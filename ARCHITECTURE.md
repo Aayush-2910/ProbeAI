@@ -101,8 +101,14 @@ Single endpoint: **`POST /api/interview`**. Three states, distinguished by which
 
 | Method | Path | Returns |
 |---|---|---|
-| GET | `/` | `{"status":"ok","app":"ProbeAI", ...}` health check |
+| GET | `/health` (alias `/api/health`) | `{"status":"ok","app":"ProbeAI", ...}` health check |
 | GET | `/api/candidates` | all 20 sample candidate profiles (frontend dropdown) |
+| GET | `/` | the built SPA (`frontend/dist`), mounted last so it cannot shadow the API |
+
+**Root-path note:** health originally lived at `/`, but the frontend must own the root — a judge
+opening the URL has to get the app, not JSON. Health moved to `/health` with an `/api/health` alias.
+When no frontend build exists, `/` falls back to the health handler so API-only deployments still
+answer at the root.
 
 CORS: allow all origins (hackathon scope).
 
@@ -527,10 +533,12 @@ keys in §6. Anyone needing an extra field adds it to §6 first, then implements
 
 ## 15. Current repository state
 
-Wave 1–4 scaffolding already exists on `main` as a reference implementation of this spec: all nine
-backend modules, `data/curriculum.json` (31 days), `data/candidates.json` (20 profiles), and both
-scripts. It passes the offline suite in §14.1–2 end to end; it has **not** been run against a live
-Gemini key, so prompt tuning (§10) and the live archetype review (§14.3) are open.
+Implemented on `main`: all nine backend modules, `data/curriculum.json` (31 days),
+`data/candidates.json` (20 profiles), both scripts, and the static mount that serves the built
+frontend from the API. It passes the offline suite in §14.1–2 end to end.
+
+Open: it has **not** been run against a live Gemini key, so prompt tuning (§10) and the live
+archetype review (§14.3) remain outstanding.
 
 Teams should treat this document as the contract and the existing code as a starting point to
 replace, extend, or rewrite within their track.

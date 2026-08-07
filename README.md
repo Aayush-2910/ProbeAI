@@ -58,18 +58,31 @@ model_says_closing)` — model judgment strictly inside hard-coded bounds.
 ## Quickstart
 
 ```bash
+# 1. backend
 pip install -r requirements.txt
 cp .env.example .env          # add your GEMINI_API_KEY
 
-# see the planner work — no API key needed
+# 2. frontend
+cd frontend && npm install && npm run build && cd ..
+
+# 3. run it — API + UI on one origin
+uvicorn main:app --reload --app-dir backend
+# open http://localhost:8000
+```
+
+**Development** (hot reload) — run both, and Vite proxies `/api` to the backend:
+
+```bash
+uvicorn main:app --reload --app-dir backend   # terminal 1
+cd frontend && npm run dev                    # terminal 2 → http://localhost:5173
+```
+
+**Without a browser** — see the planner work with no API key at all:
+
+```bash
 python scripts/preview_plan.py            # list all 20 candidates
 python scripts/preview_plan.py CAND-001   # full interview plan for one
-
-# run the API
-uvicorn main:app --reload --app-dir backend
-
-# take the interview in your terminal
-python scripts/interview_cli.py CAND-010
+python scripts/interview_cli.py CAND-010  # take the interview in your terminal
 ```
 
 `preview_plan.py` is the fastest way to see the non-generative half of the system: it prints the exact
@@ -104,7 +117,8 @@ POST /api/interview
     "feedback": { "summary": "...", "strengths": [...], "gaps": [...], "next": [...] } }
 ```
 
-Also: `GET /` health check · `GET /api/candidates` returns all 20 sample profiles.
+Also: `GET /api/candidates` returns all 20 sample profiles · `GET /health` (alias `/api/health`) is
+the health check · `GET /` serves the built UI.
 
 ---
 
@@ -144,10 +158,17 @@ Stated plainly, because a README that overclaims is worse than one that undercla
 |---|---|
 | Backend — 9 modules | ✅ implemented, passes the offline suite end to end |
 | `curriculum.json` · `candidates.json` | ✅ 31 days, 20 profiles |
-| Architecture specs (backend + frontend) | ✅ complete, frozen for implementation |
+| Architecture specs (backend + frontend) | ✅ complete |
+| Frontend — 11 components, 4 hooks, 2 utils | ✅ implemented; production build clean |
+| Static deploy (`frontend/dist` served by FastAPI) | ✅ wired, API routes verified unshadowed |
 | Live Gemini run | ⚠️ not yet performed — prompt tuning and per-archetype review are open |
-| Frontend | ⚠️ scaffold only — infrastructure filled, all components are contract stubs |
-| Static deploy (`frontend/dist` served by FastAPI) | ❌ not wired yet |
+| Visual QA in a real browser | ⚠️ flows verified in a DOM harness, not yet eyeballed at 1440px/375px |
+
+**How the frontend was verified:** the real bundle is executed in a JSDOM harness against a stubbed
+backend, driving landing → start → answer → completion → feedback → reset, plus a forced 503 with
+retry and a theme toggle. It asserts the things that are easy to get wrong: the draft clears only
+after send, retry resends *without* duplicating the bubble, the input unmounts when the interview
+ends, the word "Gaps" never reaches the UI, and the theme persists to `localStorage`.
 
 Nothing here is claimed to work that has not been run.
 

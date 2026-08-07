@@ -354,11 +354,12 @@ keeps re-renders exactly as local as `useState` does.
 |---|---|
 | Backend (9 modules) | implemented, passes the offline suite end to end |
 | `curriculum.json`, `candidates.json` | complete — 31 days, 20 profiles |
-| Backend architecture doc | complete, frozen for the team |
+| Backend architecture doc | complete |
 | Live Gemini run | **not yet performed** — no API key was present in the build environment, so prompt tuning (Part 2) and per-archetype review are open |
-| Frontend architecture doc | complete, frozen for the team |
-| Frontend code | **scaffold only** — 20 files, infrastructure filled, all components are contract stubs |
-| Static-file deploy (`frontend/dist` served by FastAPI) | **not wired yet** |
+| Frontend architecture doc | complete |
+| Frontend code | implemented — 11 components, 4 hooks, 2 utils; production build clean; all flows verified in a DOM harness |
+| Static-file deploy (`frontend/dist` served by FastAPI) | wired; API routes verified unshadowed |
+| Visual QA in a real browser | **not yet done** — behaviour is tested, appearance is not |
 
 Nothing in this repository is claimed to work that has not been run.
 

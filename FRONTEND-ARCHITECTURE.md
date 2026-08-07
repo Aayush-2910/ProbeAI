@@ -55,6 +55,8 @@ frontend/
     hooks/
       useInterview.js        # THE BRAIN — session, messages, loading, done, feedback, error
       useTheme.js            # isDark + toggle + localStorage + <html> class
+      useCandidates.js       # roster fetch + loading/error status (called in CandidateSelector)
+      useChatDraft.js        # answer draft + submit (called in ChatInput)
     components/
       Layout.jsx  Header.jsx  ThemeToggle.jsx
       LandingView.jsx  CandidateSelector.jsx
@@ -168,9 +170,14 @@ flowchart TD
 |---|---|---|
 | `sessionId`, `messages`, `isLoading`, `isDone`, `feedback`, `error`, `selectedCandidate` | `useInterview` in `App` | passed down as props |
 | `isDark`, `toggleTheme` | `useTheme` in `App` | props to `Header` → `ThemeToggle`; no Context needed |
-| candidate list + fetch status | `CandidateSelector` | only that component needs it; keeps `App` clean |
-| draft input text | `ChatInput` | never lifted — lifting causes a re-render of the whole tree per keystroke |
+| candidate list + fetch status | `useCandidates()`, called in `CandidateSelector` | only that component needs it; keeps `App` clean |
+| draft input text | `useChatDraft()`, called in `ChatInput` | never lifted to `App` — that would re-render the whole tree per keystroke |
 | scroll position | `ChatWindow` (ref) | not React state |
+
+**On project rule 7 ("hooks contain ALL state logic").** The two local pieces of state above live in
+hooks that are *called inside* the components that own them. A hook invoked in a component keeps
+re-renders exactly as local as `useState` does, so the rule holds at zero performance cost — only
+*lifting* state to `App` would have been expensive. The scroll position is a `useRef`, not state.
 
 **Derived, never stored:** `view = sessionId ? 'interview' : 'landing'` · `canSend = draft.trim() && !isLoading && !isDone` ·
 `showTyping = isLoading` · `showFeedback = isDone && feedback`.
@@ -363,8 +370,16 @@ proxy keeps `API_BASE='/api'` identical in both environments, which is why it's 
 backend needs a mount, added **after** the API routes so it can't shadow them:
 
 ```python
-app.mount("/", StaticFiles(directory="frontend/dist", html=True), name="frontend")
+FRONTEND_DIST = BASE_DIR.parent / "frontend" / "dist"   # config.py
+if FRONTEND_DIST.is_dir():
+    app.mount("/", StaticFiles(directory=FRONTEND_DIST, html=True), name="frontend")
 ```
+
+Derived from `BASE_DIR`, not a relative string, because uvicorn runs with `--app-dir backend`. The
+`is_dir()` guard keeps the backend starting before anyone has run `npm run build`.
+
+**The health check moved.** `GET /` used to return health JSON, which meant the SPA could never own the
+root. Health is now `/health` (alias `/api/health`), and `/` falls back to it only when no build exists.
 
 Because view switching is state-based rather than routed, no SPA history fallback is required — `html=True`
 serving `index.html` at `/` is sufficient. Keep Vite's default relative `base`.
@@ -413,11 +428,13 @@ one canned interview reply) unblocks D and E before the backend has a live Gemin
 
 ---
 
-## 14. Open decisions for Wave 1
+## 14. Decisions closed during implementation
 
-1. **Opacity modifiers** — plain `var()` (simple, no `/20` support) vs channel triplets (verbose, full
-   support). Pick before any component is styled; retrofitting touches every file.
-2. **Textarea vs input** — spec allows either; textarea is assumed throughout §6 because Shift+Enter and
-   auto-grow are listed. Confirm and drop the alternative.
-3. **Candidate pill contents** — name + role + years is specified; decide the truncation order for narrow
-   viewports (drop years, then role).
+1. **Opacity modifiers** — settled on plain `var()` colours. Instead of channel triplets, the handful of
+   translucent/per-theme cases got their own semantic tokens: `--logo`, `--marker-good`, `--marker-next`,
+   `--hover-wash`, `--tint-danger`. This keeps `dark:` variants out of components entirely, which was the
+   point of §3.1. Accent-as-text was the forcing case: `#E4FD97` is invisible on the light background,
+   so the logo and the "strengths" markers need a per-theme value, not an opacity tweak.
+2. **Textarea, not input** — confirmed. Shift+Enter and auto-grow to a 4-line ceiling require it.
+3. **Candidate pill truncation** — implemented as specified: role hides below `sm`, years below `md`,
+   name always visible and truncated with ellipsis rather than wrapping.

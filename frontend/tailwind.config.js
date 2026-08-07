@@ -42,6 +42,13 @@ export default {
         },
         warn: 'var(--warn)',
         danger: 'var(--danger)',
+        logo: 'var(--logo)',
+        marker: {
+          good: 'var(--marker-good)',
+          next: 'var(--marker-next)',
+        },
+        wash: 'var(--hover-wash)',
+        tintDanger: 'var(--tint-danger)',
       },
       maxWidth: {
         chat: '800px',

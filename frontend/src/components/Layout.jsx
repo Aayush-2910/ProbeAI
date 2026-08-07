@@ -1,11 +1,15 @@
 /**
  * Layout — full page shell.
- * Track A · FRONTEND-ARCHITECTURE.md §6
- *
- * Props: { header, children }
- *
- * Full-height flex column on the page background.
- * Use min-h-dvh (not min-h-screen) — mobile browser chrome breaks 100vh.
- *
- * TODO(track-a): implement.
+ * FRONTEND-ARCHITECTURE.md §6
  */
+
+export default function Layout({ header, children }) {
+  return (
+    // h-dvh (not min-h-screen): the chat scrolls inside <main>, so the shell
+    // must be exactly viewport-height. dvh also survives mobile browser chrome.
+    <div className="flex h-dvh flex-col bg-bg text-text">
+      {header}
+      <main className="flex min-h-0 flex-1 flex-col">{children}</main>
+    </div>
+  )
+}

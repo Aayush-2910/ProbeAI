@@ -18,6 +18,11 @@ DATA_DIR = BASE_DIR / "data"
 CURRICULUM_PATH = DATA_DIR / "curriculum.json"
 CANDIDATES_PATH = DATA_DIR / "candidates.json"
 
+# Built frontend, served as static files by the API so the app deploys as one
+# unit. Derived from BASE_DIR because uvicorn runs with --app-dir backend and a
+# relative path would resolve against the wrong directory.
+FRONTEND_DIST = BASE_DIR.parent / "frontend" / "dist"
+
 # --- Gemini -----------------------------------------------------------------
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")

@@ -1,24 +1,82 @@
 /**
- * API layer. The only module that talks to the backend.
- * Track B · FRONTEND-ARCHITECTURE.md §7 · backend contract: ARCHITECTURE.md §3
+ * The only module that talks to the backend.
+ * FRONTEND-ARCHITECTURE.md §7 · backend contract: ARCHITECTURE.md §3
  *
- * const API_BASE = '/api'   // same origin in prod, Vite proxy in dev
- *
- * Exports:
- *   fetchCandidates()                     -> GET  /api/candidates  -> Candidate[]
- *   startInterview(sessionId, candidate)  -> POST /api/interview   { sessionId, candidate }
- *   sendMessage(sessionId, message)       -> POST /api/interview   { sessionId, message }
- *
- * Response shape: { reply, done, feedback? }  — feedback is ABSENT unless done.
- *
- * Requirements:
- *   - candidate is sent VERBATIM as served by /api/candidates
- *     (member / missions / signals). Never reshape or trim it.
- *   - on !res.ok, parse FastAPI's { detail } and throw an error carrying BOTH
- *     the status and the detail, so the UI can map per §7:
- *       400/422 dev bug · 404 session expired · 409 desync · 503 LLM unavailable
- *   - if an AbortController timeout is added, use >= 60s. Turns are LLM-bound
- *     and a short timeout fires mid-answer and looks like a bug.
- *
- * TODO(track-b): implement.
+ * Stateless: no module-level mutable state, only network calls.
  */
+
+const API_BASE = '/api'
+
+// Turns are LLM-bound and routinely take 5-20s. A short timeout fires
+// mid-answer and looks like a bug, so this is deliberately generous. §7
+const TIMEOUT_MS = 90000
+
+export class ApiError extends Error {
+  constructor(message, status, kind) {
+    super(message)
+    this.name = 'ApiError'
+    this.status = status
+    this.kind = kind
+  }
+}
+
+function classify(status) {
+  if (status === 404) return 'session-expired'
+  if (status === 409) return 'already-done'
+  if (status === 503) return 'llm-unavailable'
+  if (status === 400 || status === 422) return 'bad-request'
+  return 'unknown'
+}
+
+async function readDetail(res) {
+  try {
+    const body = await res.json()
+    if (typeof body?.detail === 'string') return body.detail
+    if (Array.isArray(body?.detail)) return 'The request was rejected by the server.'
+  } catch {
+    /* non-JSON error body */
+  }
+  return `Request failed (${res.status}).`
+}
+
+async function request(path, options = {}) {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
+
+  try {
+    const res = await fetch(`${API_BASE}${path}`, { ...options, signal: controller.signal })
+    if (!res.ok) {
+      throw new ApiError(await readDetail(res), res.status, classify(res.status))
+    }
+    return await res.json()
+  } catch (error) {
+    if (error instanceof ApiError) throw error
+    if (error.name === 'AbortError') {
+      throw new ApiError('The request timed out.', 0, 'network')
+    }
+    throw new ApiError('Could not reach the server.', 0, 'network')
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+function postJson(body) {
+  return {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  }
+}
+
+export function fetchCandidates() {
+  return request('/candidates')
+}
+
+/** `candidate` is sent verbatim as served by /api/candidates. Never reshape it. */
+export function startInterview(sessionId, candidate) {
+  return request('/interview', postJson({ sessionId, candidate }))
+}
+
+export function sendMessage(sessionId, message) {
+  return request('/interview', postJson({ sessionId, message }))
+}

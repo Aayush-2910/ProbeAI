@@ -6,11 +6,12 @@ from typing import Any, Dict, List
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 import conversation_engine
 import feedback_generator
 import interview_planner
-from config import CANDIDATES_PATH, GEMINI_MODEL
+from config import CANDIDATES_PATH, FRONTEND_DIST, GEMINI_MODEL
 from curriculum import curriculum
 from llm_client import LLMError
 from models import InterviewRequest, InterviewResponse
@@ -46,8 +47,15 @@ def _load_candidates() -> List[Dict[str, Any]]:
 CANDIDATES = _load_candidates()
 
 
-@app.get("/")
+@app.get("/health")
+@app.get("/api/health")
 async def health() -> Dict[str, Any]:
+    """Health check.
+
+    Lives at /health rather than / because the built frontend owns the root —
+    a judge opening the URL must get the app, not JSON. When no frontend build
+    exists, / is registered as this same handler at the bottom of the file.
+    """
     return {
         "status": "ok",
         "app": "ProbeAI",
@@ -117,3 +125,14 @@ async def interview(request: InterviewRequest) -> InterviewResponse:
     except LLMError as exc:
         logger.error("LLM failure on session %s: %s", request.sessionId, exc)
         raise HTTPException(status_code=503, detail=f"Interviewer is unavailable: {exc}") from exc
+
+
+# Mounted LAST so it cannot shadow the API routes, and guarded so the backend
+# still starts before anyone has run `npm run build`.
+if FRONTEND_DIST.is_dir():
+    app.mount("/", StaticFiles(directory=FRONTEND_DIST, html=True), name="frontend")
+    logger.info("serving built frontend from %s", FRONTEND_DIST)
+else:
+    # API-only mode: keep the root answering so health checks still work.
+    app.add_api_route("/", health, methods=["GET"])
+    logger.info("no frontend build at %s — API only (run `npm run build`)", FRONTEND_DIST)
