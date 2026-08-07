@@ -16,7 +16,8 @@ export default function TypingIndicator() {
 
       <div
         className="flex items-center gap-2.5 rounded-2xl rounded-tl-[4px] border border-border
-                   border-l-2 border-l-accent-muted bg-bubble-interviewer px-4 py-3.5"
+                   border-l-2 border-l-accent-muted bg-bubble-interviewer px-4 py-3.5
+                   shadow-[0_1px_2px_rgba(0,0,0,0.06)]"
       >
         <span className="flex items-center gap-1" aria-hidden="true">
           <span className="dot h-1.5 w-1.5 rounded-full bg-accent" />

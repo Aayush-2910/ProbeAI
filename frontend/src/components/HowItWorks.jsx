@@ -1,7 +1,10 @@
 /**
  * HowItWorks — orientation for first-time visitors: the five-step flow from
- * picking a candidate to reading the assessment.
+ * picking a candidate to reading the assessment. Each step is an interactive
+ * card (border-glow + lift on hover) that eases into view as it scrolls in.
  */
+
+import { useInView } from '../hooks/useInView'
 
 function SelectIcon() {
   return (
@@ -52,6 +55,15 @@ function ResultIcon() {
   )
 }
 
+function ChevronIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4 rotate-90 text-accent-muted sm:rotate-0" fill="none"
+      stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M9 6l6 6-6 6" />
+    </svg>
+  )
+}
+
 const STEPS = [
   {
     icon: SelectIcon,
@@ -80,6 +92,53 @@ const STEPS = [
   },
 ]
 
+function Connector() {
+  return (
+    <div className="flex shrink-0 items-center justify-center py-1 sm:flex-col sm:py-0" aria-hidden="true">
+      <ChevronIcon />
+    </div>
+  )
+}
+
+function StepCard({ step, index }) {
+  const [ref, inView] = useInView()
+  const Icon = step.icon
+
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: inView ? `${index * 90}ms` : '0ms' }}
+      className={`glow-hover lift group relative flex flex-1 flex-col items-center rounded-2xl
+                 border border-border bg-surface px-5 py-8 text-center transition-all
+                 duration-500 ease-out hover:bg-hover
+                 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}
+    >
+      <div className="relative">
+        <span
+          className="flex h-16 w-16 items-center justify-center rounded-full border
+                     border-accent-muted bg-elevated text-accent-strong transition-transform
+                     duration-300 group-hover:scale-110"
+          aria-hidden="true"
+        >
+          <Icon />
+        </span>
+        <span
+          className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full
+                     bg-accent text-[11px] font-bold text-[var(--btn-text)] shadow-[0_0_10px_var(--accent-glow)]"
+          aria-hidden="true"
+        >
+          {index + 1}
+        </span>
+      </div>
+
+      <h3 className="mt-5 text-[16.5px] font-bold text-text">{step.title}</h3>
+      <p className="mt-2 max-w-[210px] text-[14px] font-normal leading-relaxed text-text-secondary">
+        {step.desc}
+      </p>
+    </div>
+  )
+}
+
 export default function HowItWorks() {
   return (
     <section className="w-full">
@@ -92,49 +151,13 @@ export default function HowItWorks() {
         </p>
       </div>
 
-      <div className="mt-12 flex flex-col gap-9 sm:flex-row sm:items-start sm:gap-0">
-        {STEPS.map((step, index) => {
-          const Icon = step.icon
-          const hasNext = index < STEPS.length - 1
-          return (
-            <div key={step.title} className="flex flex-row sm:flex-1 sm:flex-col sm:items-center">
-              {/* Rail: icon + connector. Column (line drops below the icon) on
-                  mobile; row (line extends right to the next icon) on desktop. */}
-              <div className="flex shrink-0 flex-col items-center sm:w-full sm:flex-row">
-                <div className="relative">
-                  <span
-                    className="flex h-16 w-16 items-center justify-center rounded-full border
-                               border-accent-muted bg-surface text-accent-strong"
-                    aria-hidden="true"
-                  >
-                    <Icon />
-                  </span>
-                  <span
-                    className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center
-                               rounded-full bg-accent text-[11px] font-bold text-[var(--btn-text)]"
-                    aria-hidden="true"
-                  >
-                    {index + 1}
-                  </span>
-                </div>
-
-                {hasNext && (
-                  <span
-                    className="mt-3 h-12 w-px accent-line sm:mt-0 sm:ml-4 sm:h-px sm:w-auto sm:flex-1"
-                    aria-hidden="true"
-                  />
-                )}
-              </div>
-
-              <div className="ml-5 sm:ml-0 sm:mt-4 sm:w-full sm:px-3 sm:text-center">
-                <h3 className="text-[16.5px] font-bold text-text">{step.title}</h3>
-                <p className="mt-1.5 max-w-[210px] text-[14px] font-normal leading-relaxed text-text-secondary sm:mx-auto">
-                  {step.desc}
-                </p>
-              </div>
-            </div>
-          )
-        })}
+      <div className="mt-12 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:gap-3">
+        {STEPS.map((step, index) => (
+          <div key={step.title} className="flex flex-col sm:contents">
+            <StepCard step={step} index={index} />
+            {index < STEPS.length - 1 && <Connector />}
+          </div>
+        ))}
       </div>
     </section>
   )

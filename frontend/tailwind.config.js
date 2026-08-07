@@ -54,6 +54,7 @@ export default {
         info: 'var(--info)',
         danger: 'var(--danger)',
         tintDanger: 'var(--tint-danger)',
+        tintSuccess: 'var(--tint-success)',
         track: 'var(--track)',
       },
       maxWidth: {

@@ -9,26 +9,34 @@
 /* ---------------------------------------------------------------- tokens */
 
 :root {
-  /* LIGHT — toggle target */
-  --bg: #f8faf5;
-  --grid: rgba(45, 62, 44, 0.05);
-  --surface: #ffffff;
-  --elevated: #f0f4eb;
-  --hover: #e9efe2;
+  /* LIGHT — toggle target.
+     Backgrounds are a warm ivory/grey scale, not green-tinted white — green
+     is reserved for the accent (buttons, candidate bubble, logo/icon text),
+     not the page itself. --accent-strong is deliberately darker and more
+     saturated than a straight accent-hue pick would give you, since it is
+     read as *text* here — see the contrast note below. */
+  --bg: #f7f6f1;
+  --grid: rgba(60, 58, 48, 0.05);
+  --surface: #f2f0ea;
+  --elevated: #ece9e1;
+  --hover: #e6e2d8;
   --accent: #e4fd97;
-  --accent-strong: #4b6b2f; /* accent as *text* — lime is invisible on white */
-  --accent-muted: #7d9455;
-  --accent-glow: rgba(45, 62, 44, 0.12);
+  /* ~8.7:1 on --surface (was ~6:1 on pure white at the old, lighter value) —
+     darker AND better contrast, since the background also moved off white. */
+  --accent-strong: #2f4a1f;
+  --accent-muted: #5c7a42;
+  --accent-glow: rgba(47, 74, 31, 0.12);
   --text: #2d3e2c;
   --text-secondary: #4f6350;
-  /* Darkened from #8a9a88 (~3.3:1 on white — fails AA) to ~4.9:1. */
-  --text-muted: #61715d;
-  --border: #d4ddd2;
-  --bubble-interviewer: #ffffff;
+  /* Darkened again alongside the background move (was ~4.58:1 against the
+     new, slightly deeper surface — too close to the 4.5:1 AA floor). */
+  --text-muted: #586653;
+  --border: #ddd8cc;
+  --bubble-interviewer: #f2f0ea;
   --bubble-candidate: #e4fd97;
   --bubble-candidate-text: #2d3e2c;
-  --input-bg: #ffffff;
-  --input-border: #d4ddd2;
+  --input-bg: #f2f0ea;
+  --input-border: #ddd8cc;
   --btn-bg: #2d3e2c;
   --btn-text: #e4fd97;
   --btn-hover: #3a5039;
@@ -37,9 +45,10 @@
   --warn: #b45309;
   --info: #2563eb;
   --tint-danger: rgba(176, 54, 54, 0.08);
+  --tint-success: rgba(22, 163, 74, 0.08);
   --danger: #b03636;
-  --glass: rgba(248, 250, 245, 0.75);
-  --track: rgba(45, 62, 44, 0.1);
+  --glass: rgba(247, 246, 241, 0.75);
+  --track: rgba(70, 65, 55, 0.1);
 }
 
 .dark {
@@ -73,6 +82,7 @@
   --warn: #fbbf24;
   --info: #60a5fa;
   --tint-danger: rgba(224, 122, 122, 0.09);
+  --tint-success: rgba(74, 222, 128, 0.12);
   --danger: #e07a7a;
   --glass: rgba(11, 15, 12, 0.72);
   --track: rgba(228, 253, 151, 0.12);

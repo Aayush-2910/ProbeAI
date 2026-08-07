@@ -112,3 +112,11 @@ export function notableGaps(candidate, limit = 3) {
   const failed = missions.filter((m) => m.passed === false).map(titleOf)
   return [...skipped, ...failed].slice(0, limit)
 }
+
+/** "10:42 AM" from a message's ISO timestamp — shown once per bubble group. */
+export function formatMessageTime(iso) {
+  if (!iso) return ''
+  const date = new Date(iso)
+  if (Number.isNaN(date.getTime())) return ''
+  return date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
+}

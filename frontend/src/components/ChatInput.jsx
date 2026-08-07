@@ -50,7 +50,13 @@ export default function ChatInput({ onSend, disabled, autoFocusKey }) {
   return (
     <div className="shrink-0 bg-bg">
       <div className="accent-line" />
-      <div className="mx-auto flex w-full max-w-chat items-end gap-3 px-4 py-3 sm:px-6">
+      <div className="mx-auto flex w-full max-w-chat items-center gap-1.5 px-4 pt-2.5 sm:px-6">
+        <span className="h-1.5 w-1.5 rounded-full bg-success" aria-hidden="true" />
+        <span className="text-[10.5px] font-medium uppercase tracking-[0.06em] text-text-muted">
+          Live session
+        </span>
+      </div>
+      <div className="mx-auto flex w-full max-w-chat items-end gap-3 px-4 pb-3 pt-2 sm:px-6">
         <label htmlFor="answer" className="sr-only">
           Your answer
         </label>

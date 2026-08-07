@@ -29,6 +29,7 @@ export default function InterviewView({
         questionCount={questionCount}
         answerCount={answerCount}
         startedAt={startedAt}
+        isLoading={isLoading}
         isDone={isDone}
       />
 
