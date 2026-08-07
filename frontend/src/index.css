@@ -1,0 +1,159 @@
+/* FRONTEND-ARCHITECTURE.md §3.1 (tokens), §8 (motion), custom scrollbar.
+   Track A owns this file. Components must not redefine these values inline. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------- tokens */
+
+:root {
+  /* LIGHT — toggle target */
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --elevated: #f0f2ec;
+  --accent: #e4fd97;
+  --text: #2d3e2c;
+  --text-muted: #6b7b6a;
+  --border: #d4ddd2;
+  --bubble-interviewer: #f0f2ec;
+  --bubble-candidate: #e4fd97;
+  --bubble-candidate-text: #2d3e2c;
+  --input-bg: #ffffff;
+  --input-border: #d4ddd2;
+  --input-focus: #2d3e2c;
+  --btn-bg: #2d3e2c;
+  --btn-text: #e4fd97;
+  --btn-hover: #3a5039;
+  --scrollbar-track: #f0f2ec;
+  --scrollbar-thumb: #d4ddd2;
+  --warn: #b4700a;
+  --danger: #b03636;
+}
+
+.dark {
+  /* DARK — default */
+  --bg: #0f1610;
+  --surface: #1a2420;
+  --elevated: #223029;
+  --accent: #e4fd97;
+  --text: #e8e8e0;
+  --text-muted: #8a9a88;
+  --border: #2d3e2c;
+  --bubble-interviewer: #1a2420;
+  --bubble-candidate: #2d3e2c;
+  --bubble-candidate-text: #e8e8e0;
+  --input-bg: #1a2420;
+  --input-border: #2d3e2c;
+  --input-focus: #e4fd97;
+  --btn-bg: #e4fd97;
+  --btn-text: #2d3e2c;
+  --btn-hover: #d4ed87;
+  --scrollbar-track: #1a2420;
+  --scrollbar-thumb: #2d3e2c;
+  --warn: #e0a94a;
+  --danger: #e07a7a;
+}
+
+/* ------------------------------------------------------------------ base */
+
+@layer base {
+  html {
+    /* §8 — transition named properties only. `transition: all` makes the
+       theme toggle janky once 40+ bubbles are mounted. */
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+    transition: background-color 300ms ease, color 300ms ease;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+/* ------------------------------------------------------------ animations */
+
+@keyframes messageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-enter {
+  animation: messageIn 300ms ease-out forwards;
+}
+
+@keyframes dotPulse {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.typing-dot {
+  animation: dotPulse 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes feedbackIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.feedback-enter {
+  animation: feedbackIn 500ms ease-out forwards;
+}
+
+/* ------------------------------------------------------------- scrollbar */
+
+.chat-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+.chat-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+/* -------------------------------------------------------- reduced motion */
+/* §8 — motion is pervasive here, so the escape hatch is required, not optional. */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

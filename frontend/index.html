@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProbeAI — An AI That Doesn't Just Ask. It Probes.</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      FRONTEND-ARCHITECTURE.md §3.3 — no-flash theme boot.
+      Dark is the DEFAULT, so the class must be on <html> before the bundle runs.
+      Deciding this inside a useEffect produces a visible light flash on every load.
+    -->
+    <script>
+      try {
+        var t = localStorage.getItem('probeai-theme')
+        if (t !== 'light') document.documentElement.classList.add('dark')
+      } catch (e) {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

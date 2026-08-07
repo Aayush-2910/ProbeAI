@@ -1,0 +1,3998 @@
+[
+  {
+    "member": {
+      "id": "CAND-001",
+      "name": "Sarah Johnson",
+      "jobRole": "Senior Data Engineer",
+      "yearsExperience": 9,
+      "education": "MS Computer Science",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "skipped": true
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 28,
+      "missionsCompleted": 30,
+      "missionsFirstTry": 20
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-002",
+      "name": "Marcus Webb",
+      "jobRole": "Machine Learning Engineer",
+      "yearsExperience": 5,
+      "education": "BS Computer Science",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": false,
+        "attempts": 3
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 26,
+      "missionsCompleted": 30,
+      "missionsFirstTry": 25
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-003",
+      "name": "Emily Chen",
+      "jobRole": "AI Research Engineer",
+      "yearsExperience": 6,
+      "education": "PhD Machine Learning",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 31,
+      "missionsCompleted": 31,
+      "missionsFirstTry": 30
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-004",
+      "name": "David Miller",
+      "jobRole": "Product Manager",
+      "yearsExperience": 11,
+      "education": "MBA",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 30,
+      "missionsCompleted": 31,
+      "missionsFirstTry": 11
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-005",
+      "name": "Priya Nair",
+      "jobRole": "Backend Developer",
+      "yearsExperience": 4,
+      "education": "B.Tech Information Technology",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": false,
+        "attempts": 4
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 27,
+      "missionsCompleted": 30,
+      "missionsFirstTry": 27
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-006",
+      "name": "Tom Becker",
+      "jobRole": "Data Analyst",
+      "yearsExperience": 3,
+      "education": "BA Economics",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": false,
+        "attempts": 2
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "skipped": true
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "skipped": true
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 24,
+      "missionsCompleted": 27,
+      "missionsFirstTry": 22
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-007",
+      "name": "Aisha Rahman",
+      "jobRole": "Junior Software Engineer",
+      "yearsExperience": 1,
+      "education": "BS Software Engineering",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": false,
+        "attempts": 3
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": false,
+        "attempts": 4
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "skipped": true
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 29,
+      "missionsCompleted": 28,
+      "missionsFirstTry": 20
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-008",
+      "name": "Carlos Ortega",
+      "jobRole": "DevOps Engineer",
+      "yearsExperience": 8,
+      "education": "BS Computer Science",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": false,
+        "attempts": 3
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": false,
+        "attempts": 2
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "skipped": true
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 25,
+      "missionsCompleted": 28,
+      "missionsFirstTry": 23
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-009",
+      "name": "Lena Fischer",
+      "jobRole": "Principal Software Architect",
+      "yearsExperience": 14,
+      "education": "MS Software Engineering",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "skipped": true
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "skipped": true
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 26,
+      "missionsCompleted": 29,
+      "missionsFirstTry": 27
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-010",
+      "name": "Gerald Combs",
+      "jobRole": "IT Support Specialist",
+      "yearsExperience": 7,
+      "education": "Associate Degree in Information Technology",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": false,
+        "attempts": 5
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": false,
+        "attempts": 5
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": false,
+        "attempts": 4
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": false,
+        "attempts": 5
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": false,
+        "attempts": 4
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 3
+      }
+    ],
+    "signals": {
+      "commitDays": 31,
+      "missionsCompleted": 26,
+      "missionsFirstTry": 1
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-011",
+      "name": "Mia Alvarez",
+      "jobRole": "UX Researcher",
+      "yearsExperience": 5,
+      "education": "MA Human-Computer Interaction",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "skipped": true
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "skipped": true
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "skipped": true
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "skipped": true
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "skipped": true
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "skipped": true
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": false,
+        "attempts": 2
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 19,
+      "missionsCompleted": 22,
+      "missionsFirstTry": 17
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-012",
+      "name": "Rohan Gupta",
+      "jobRole": "Full Stack Developer",
+      "yearsExperience": 6,
+      "education": "BE Computer Science",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": false,
+        "attempts": 3
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 28,
+      "missionsCompleted": 30,
+      "missionsFirstTry": 26
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-013",
+      "name": "Yuki Tanaka",
+      "jobRole": "Data Scientist",
+      "yearsExperience": 7,
+      "education": "MS Statistics",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": false,
+        "attempts": 3
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "skipped": true
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 25,
+      "missionsCompleted": 29,
+      "missionsFirstTry": 25
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-014",
+      "name": "Grace Okoro",
+      "jobRole": "Marketing Manager",
+      "yearsExperience": 9,
+      "education": "MBA Marketing",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "skipped": true
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "skipped": true
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "skipped": true
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "skipped": true
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 5
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "skipped": true
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "skipped": true
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 22,
+      "missionsCompleted": 25,
+      "missionsFirstTry": 11
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-015",
+      "name": "Ivan Petrov",
+      "jobRole": "Systems Engineer",
+      "yearsExperience": 12,
+      "education": "MS Electrical Engineering",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "skipped": true
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "skipped": true
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "skipped": true
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "skipped": true
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 24,
+      "missionsCompleted": 27,
+      "missionsFirstTry": 24
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-016",
+      "name": "Hannah Lee",
+      "jobRole": "AI Engineering Intern",
+      "yearsExperience": 0,
+      "education": "BS Computer Science (in progress)",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": false,
+        "attempts": 3
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "skipped": true
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "skipped": true
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 30,
+      "missionsCompleted": 28,
+      "missionsFirstTry": 18
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-017",
+      "name": "Omar Haddad",
+      "jobRole": "Cloud Solutions Architect",
+      "yearsExperience": 10,
+      "education": "BS Computer Engineering",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "skipped": true
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 2
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 27,
+      "missionsCompleted": 30,
+      "missionsFirstTry": 26
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-018",
+      "name": "Bianca Rossi",
+      "jobRole": "QA Automation Engineer",
+      "yearsExperience": 6,
+      "education": "BS Information Technology",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": false,
+        "attempts": 2
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 26,
+      "missionsCompleted": 30,
+      "missionsFirstTry": 25
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-019",
+      "name": "Nathan Cole",
+      "jobRole": "Business Analyst",
+      "yearsExperience": 8,
+      "education": "BBA Business Administration",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "skipped": true
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "skipped": true
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "skipped": true
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "skipped": true
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "skipped": true
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 21,
+      "missionsCompleted": 24,
+      "missionsFirstTry": 10
+    }
+  },
+  {
+    "member": {
+      "id": "CAND-020",
+      "name": "Sofia Mendes",
+      "jobRole": "Machine Learning Intern",
+      "yearsExperience": 2,
+      "education": "BS Data Science",
+      "status": "COMPLETED"
+    },
+    "missions": [
+      {
+        "day": 1,
+        "title": "Development Environment Setup",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 2,
+        "title": "Python Foundations for AI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 3,
+        "title": "APIs, HTTP & Your First LLM Call",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 4,
+        "title": "Data Collection & Ingestion",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 5,
+        "title": "Data Cleaning & Preparation",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 6,
+        "title": "Text Processing, Chunking & SQL",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 7,
+        "title": "Embeddings Explained",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 8,
+        "title": "Vector Databases: Local vs Managed",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 9,
+        "title": "Building the Retrieval Layer",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 10,
+        "title": "Hybrid Search & Query Routing",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 11,
+        "title": "RAG Pipeline Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 12,
+        "title": "Prompt Engineering Fundamentals",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 13,
+        "title": "Function Calling & Structured Outputs",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 14,
+        "title": "Fine-Tuning Foundations: LoRA & PEFT",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 15,
+        "title": "QLoRA & Fine-Tuning Trade-offs",
+        "passed": true,
+        "attempts": 4
+      },
+      {
+        "day": 16,
+        "title": "FastAPI Chat Backend",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 17,
+        "title": "Streamlit Chat UI",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 18,
+        "title": "Streaming Responses with SSE",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 19,
+        "title": "Citations & Rich Response Rendering",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 20,
+        "title": "Conversation Memory & Persistence",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 21,
+        "title": "LangChain Agents & the ReAct Pattern",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 22,
+        "title": "Multi-Agent Orchestration",
+        "passed": true,
+        "attempts": 3
+      },
+      {
+        "day": 23,
+        "title": "Model Context Protocol (MCP)",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 24,
+        "title": "Full Agentic Integration",
+        "passed": false,
+        "attempts": 3
+      },
+      {
+        "day": 25,
+        "title": "LLM Evaluation & Benchmarking",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 26,
+        "title": "Token Optimization, Caching & Latency",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 27,
+        "title": "AI Security & Safety",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 28,
+        "title": "Containerization & Deployment",
+        "passed": true,
+        "attempts": 1
+      },
+      {
+        "day": 29,
+        "title": "Monitoring, Logging & Observability",
+        "skipped": true
+      },
+      {
+        "day": 30,
+        "title": "End-to-End Production Testing & Documentation",
+        "skipped": true
+      },
+      {
+        "day": 31,
+        "title": "Capstone Demo",
+        "passed": true,
+        "attempts": 1
+      }
+    ],
+    "signals": {
+      "commitDays": 23,
+      "missionsCompleted": 28,
+      "missionsFirstTry": 23
+    }
+  }
+]

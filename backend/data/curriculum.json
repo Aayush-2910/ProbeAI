@@ -1,0 +1,458 @@
+{
+  "cohort": "31-Day AI Engineering Cohort",
+  "total_days": 31,
+  "modules": [
+    { "id": 1, "title": "Environment & Tooling", "days": [1, 2, 3] },
+    { "id": 2, "title": "Data Foundations", "days": [4, 5, 6] },
+    { "id": 3, "title": "Embeddings & Vector Search", "days": [7, 8, 9, 10] },
+    { "id": 4, "title": "LLM Core, Prompting & Fine-Tuning", "days": [11, 12, 13, 14, 15] },
+    { "id": 5, "title": "Chatbot Application Build", "days": [16, 17, 18, 19, 20] },
+    { "id": 6, "title": "Agentic AI & MCP", "days": [21, 22, 23, 24] },
+    { "id": 7, "title": "Evaluation, Security & Deployment", "days": [25, 26, 27, 28] },
+    { "id": 8, "title": "Production & Capstone", "days": [29, 30, 31] }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "module_id": 1,
+      "module": "Environment & Tooling",
+      "title": "Development Environment Setup",
+      "type": "setup",
+      "tools": ["Python 3.11", "venv", "conda", "Git", "GitHub", "VS Code", "Jupyter"],
+      "objectives": [
+        "Set up an isolated Python environment with venv or conda",
+        "Pin and manage dependencies with requirements.txt",
+        "Use Git and GitHub for version control and branching",
+        "Run and debug notebooks in VS Code and Jupyter",
+        "Store secrets safely with .env files and environment variables"
+      ]
+    },
+    {
+      "day": 2,
+      "module_id": 1,
+      "module": "Environment & Tooling",
+      "title": "Python Foundations for AI",
+      "type": "concept",
+      "tools": ["Python", "Pydantic", "asyncio", "typing", "logging"],
+      "objectives": [
+        "Work with core Python data structures for AI workloads",
+        "Write typed, modular Python using functions and classes",
+        "Use async/await to run concurrent API calls",
+        "Validate and parse data with Pydantic models",
+        "Handle exceptions and structure logging cleanly"
+      ]
+    },
+    {
+      "day": 3,
+      "module_id": 1,
+      "module": "Environment & Tooling",
+      "title": "APIs, HTTP & Your First LLM Call",
+      "type": "build",
+      "tools": ["requests", "httpx", "REST", "Postman", "OpenAI API"],
+      "objectives": [
+        "Understand REST verbs, status codes and JSON payloads",
+        "Authenticate to a third-party API with API keys",
+        "Make a first LLM completion call and read the response object",
+        "Handle rate limits, timeouts and retries",
+        "Read API documentation to find the right endpoint and parameters"
+      ]
+    },
+    {
+      "day": 4,
+      "module_id": 2,
+      "module": "Data Foundations",
+      "title": "Data Collection & Ingestion",
+      "type": "build",
+      "tools": ["pandas", "requests", "BeautifulSoup", "SQLite", "CSV", "JSON"],
+      "objectives": [
+        "Ingest data from CSV, JSON, SQL and API sources",
+        "Scrape and parse HTML responsibly",
+        "Design a raw data storage layout for a project",
+        "Handle encoding issues, schema drift and malformed records"
+      ]
+    },
+    {
+      "day": 5,
+      "module_id": 2,
+      "module": "Data Foundations",
+      "title": "Data Cleaning & Preparation",
+      "type": "build",
+      "tools": ["pandas", "numpy", "regex"],
+      "objectives": [
+        "Clean, deduplicate and normalize messy datasets",
+        "Handle missing values and outliers deliberately",
+        "Standardize text fields with regular expressions",
+        "Strip or mask PII before downstream use",
+        "Profile a dataset before building on top of it"
+      ]
+    },
+    {
+      "day": 6,
+      "module_id": 2,
+      "module": "Data Foundations",
+      "title": "Text Processing, Chunking & SQL",
+      "type": "build",
+      "tools": ["tiktoken", "NLTK", "LangChain text splitters", "SQL"],
+      "objectives": [
+        "Tokenize text and reason about token budgets",
+        "Choose chunk size and overlap for retrieval quality",
+        "Attach metadata to chunks for later filtering",
+        "Query relational data with SQL joins, filters and aggregates"
+      ]
+    },
+    {
+      "day": 7,
+      "module_id": 3,
+      "module": "Embeddings & Vector Search",
+      "title": "Embeddings Explained",
+      "type": "concept",
+      "tools": ["Sentence Transformers", "OpenAI embeddings", "scikit-learn PCA", "matplotlib"],
+      "objectives": [
+        "Explain what an embedding vector actually represents",
+        "Generate embeddings with Sentence Transformers and the OpenAI API",
+        "Compare cosine similarity, dot product and Euclidean distance",
+        "Visualize embedding clusters with PCA and interpret them",
+        "Choose an embedding model for a specific domain and cost budget"
+      ]
+    },
+    {
+      "day": 8,
+      "module_id": 3,
+      "module": "Embeddings & Vector Search",
+      "title": "Vector Databases: Local vs Managed",
+      "type": "concept",
+      "tools": ["ChromaDB", "Pinecone", "FAISS"],
+      "objectives": [
+        "Compare local stores (ChromaDB, FAISS) with managed ones (Pinecone)",
+        "Create collections, namespaces and indexes",
+        "Understand ANN indexing and the recall vs latency trade-off",
+        "Plan for persistence, scaling and cost of a vector store"
+      ]
+    },
+    {
+      "day": 9,
+      "module_id": 3,
+      "module": "Embeddings & Vector Search",
+      "title": "Building the Retrieval Layer",
+      "type": "build",
+      "tools": ["ChromaDB", "Pinecone", "Python"],
+      "objectives": [
+        "Load embeddings and metadata into a vector store",
+        "Implement semantic search with top-k retrieval",
+        "Apply metadata filtering to narrow the candidate set",
+        "Tune k and similarity thresholds against real queries",
+        "Evaluate retrieval quality by inspecting results"
+      ]
+    },
+    {
+      "day": 10,
+      "module_id": 3,
+      "module": "Embeddings & Vector Search",
+      "title": "Hybrid Search & Query Routing",
+      "type": "build",
+      "tools": ["ChromaDB", "SQLite", "Python"],
+      "objectives": [
+        "Route a query to SQL lookup, vector search or a hybrid path",
+        "Combine keyword and semantic results into one ranked list",
+        "Deduplicate and re-rank retrieved chunks",
+        "Handle queries where no chunk is a good match"
+      ]
+    },
+    {
+      "day": 11,
+      "module_id": 4,
+      "module": "LLM Core, Prompting & Fine-Tuning",
+      "title": "RAG Pipeline Fundamentals",
+      "type": "build",
+      "tools": ["OpenAI", "Ollama", "Groq", "LangChain"],
+      "objectives": [
+        "Wire retrieval into a grounded generation prompt",
+        "Swap LLM providers (OpenAI, Ollama, Groq) behind a single interface",
+        "Reduce hallucination by grounding answers in retrieved context",
+        "Handle context window limits when stuffing chunks",
+        "Measure whether an answer is actually grounded in its sources"
+      ]
+    },
+    {
+      "day": 12,
+      "module_id": 4,
+      "module": "LLM Core, Prompting & Fine-Tuning",
+      "title": "Prompt Engineering Fundamentals",
+      "type": "concept",
+      "tools": ["OpenAI", "prompt templates"],
+      "objectives": [
+        "Apply zero-shot, few-shot and chain-of-thought prompting",
+        "Design a system prompt with role, constraints and output format",
+        "Control tone, verbosity and response structure",
+        "Iterate on prompts using concrete failure examples",
+        "Recognize when prompting is the wrong tool for the problem"
+      ]
+    },
+    {
+      "day": 13,
+      "module_id": 4,
+      "module": "LLM Core, Prompting & Fine-Tuning",
+      "title": "Function Calling & Structured Outputs",
+      "type": "build",
+      "tools": ["OpenAI function calling", "Pydantic", "JSON Schema"],
+      "objectives": [
+        "Define tool schemas the model can call reliably",
+        "Parse and validate structured outputs with Pydantic",
+        "Handle invalid, partial or hallucinated JSON from the model",
+        "Feed a tool result back into the conversation loop"
+      ]
+    },
+    {
+      "day": 14,
+      "module_id": 4,
+      "module": "LLM Core, Prompting & Fine-Tuning",
+      "title": "Fine-Tuning Foundations: LoRA & PEFT",
+      "type": "build",
+      "tools": ["HuggingFace", "PEFT", "LoRA", "transformers"],
+      "objectives": [
+        "Explain how LoRA adapters modify a base model without full retraining",
+        "Prepare and format a fine-tuning dataset",
+        "Run a LoRA fine-tune and monitor training loss",
+        "Evaluate the fine-tuned model against the base model"
+      ]
+    },
+    {
+      "day": 15,
+      "module_id": 4,
+      "module": "LLM Core, Prompting & Fine-Tuning",
+      "title": "QLoRA & Fine-Tuning Trade-offs",
+      "type": "concept",
+      "tools": ["QLoRA", "bitsandbytes", "HuggingFace"],
+      "objectives": [
+        "Use quantization (QLoRA) to fine-tune on limited GPU memory",
+        "Compare fine-tuning, prompting and RAG on cost, data volume and maintenance",
+        "Decide when fine-tuning is actually justified",
+        "Avoid overfitting and catastrophic forgetting"
+      ]
+    },
+    {
+      "day": 16,
+      "module_id": 5,
+      "module": "Chatbot Application Build",
+      "title": "FastAPI Chat Backend",
+      "type": "build",
+      "tools": ["FastAPI", "uvicorn", "Pydantic"],
+      "objectives": [
+        "Build a /chat endpoint with typed request and response models",
+        "Manage per-user sessions and conversation state",
+        "Structure the app into routers, services and schemas",
+        "Return proper status codes and handle errors"
+      ]
+    },
+    {
+      "day": 17,
+      "module_id": 5,
+      "module": "Chatbot Application Build",
+      "title": "Streamlit Chat UI",
+      "type": "build",
+      "tools": ["Streamlit"],
+      "objectives": [
+        "Build a chat interface with st.chat_message and st.chat_input",
+        "Maintain conversation history in session state",
+        "Connect the UI to the FastAPI backend",
+        "Handle loading, empty and error states"
+      ]
+    },
+    {
+      "day": 18,
+      "module_id": 5,
+      "module": "Chatbot Application Build",
+      "title": "Streaming Responses with SSE",
+      "type": "build",
+      "tools": ["Server-Sent Events", "FastAPI StreamingResponse"],
+      "objectives": [
+        "Stream tokens from the LLM using Server-Sent Events",
+        "Implement StreamingResponse and an async generator in FastAPI",
+        "Render tokens incrementally in the client",
+        "Handle disconnects, partial responses and cancellation"
+      ]
+    },
+    {
+      "day": 19,
+      "module_id": 5,
+      "module": "Chatbot Application Build",
+      "title": "Citations & Rich Response Rendering",
+      "type": "build",
+      "tools": ["Markdown", "Streamlit components"],
+      "objectives": [
+        "Attach source citations to generated answers",
+        "Render structured cards and Markdown safely",
+        "Link each answer back to the retrieved chunks that produced it",
+        "Design responses for trust and transparency"
+      ]
+    },
+    {
+      "day": 20,
+      "module_id": 5,
+      "module": "Chatbot Application Build",
+      "title": "Conversation Memory & Persistence",
+      "type": "build",
+      "tools": ["SQLite", "tiktoken"],
+      "objectives": [
+        "Persist conversations and messages in SQLite",
+        "Summarize older turns to keep context under control",
+        "Manage token budgets across a long conversation",
+        "Reload session history when a user reconnects"
+      ]
+    },
+    {
+      "day": 21,
+      "module_id": 6,
+      "module": "Agentic AI & MCP",
+      "title": "LangChain Agents & the ReAct Pattern",
+      "type": "build",
+      "tools": ["LangChain", "ReAct"],
+      "objectives": [
+        "Explain the ReAct reason-act-observe loop",
+        "Wrap Python functions as agent tools with good descriptions",
+        "Debug agent traces and wrong tool selection",
+        "Bound agent loops, retries and cost"
+      ]
+    },
+    {
+      "day": 22,
+      "module_id": 6,
+      "module": "Agentic AI & MCP",
+      "title": "Multi-Agent Orchestration",
+      "type": "build",
+      "tools": ["CrewAI", "LangGraph"],
+      "objectives": [
+        "Design a router agent that delegates to specialist agents",
+        "Model state, nodes and edges in LangGraph",
+        "Coordinate roles and hand-offs in CrewAI",
+        "Avoid infinite loops, redundant work and runaway cost"
+      ]
+    },
+    {
+      "day": 23,
+      "module_id": 6,
+      "module": "Agentic AI & MCP",
+      "title": "Model Context Protocol (MCP)",
+      "type": "build",
+      "tools": ["MCP Python SDK"],
+      "objectives": [
+        "Explain what MCP standardizes between clients and servers",
+        "Build an MCP server that exposes tools and resources",
+        "Connect an MCP client to that server",
+        "Compare MCP tools with framework-native tool definitions"
+      ]
+    },
+    {
+      "day": 24,
+      "module_id": 6,
+      "module": "Agentic AI & MCP",
+      "title": "Full Agentic Integration",
+      "type": "project",
+      "tools": ["MCP", "LangGraph", "ChromaDB"],
+      "objectives": [
+        "Combine agents, MCP tools, retrieval and memory in one system",
+        "Design error handling and fallbacks across components",
+        "Trace a single request end to end through the system",
+        "Decide what the agent must not be allowed to do"
+      ]
+    },
+    {
+      "day": 25,
+      "module_id": 7,
+      "module": "Evaluation, Security & Deployment",
+      "title": "LLM Evaluation & Benchmarking",
+      "type": "concept",
+      "tools": ["RAGAS", "custom eval harness", "pytest"],
+      "objectives": [
+        "Build a benchmark dataset of question and answer pairs",
+        "Measure accuracy, grounding and consistency",
+        "Use LLM-as-judge carefully and know its failure modes",
+        "Track regressions across prompt and model versions"
+      ]
+    },
+    {
+      "day": 26,
+      "module_id": 7,
+      "module": "Evaluation, Security & Deployment",
+      "title": "Token Optimization, Caching & Latency",
+      "type": "build",
+      "tools": ["tiktoken", "Redis", "response caching"],
+      "objectives": [
+        "Count and reduce tokens per request",
+        "Cache responses and embeddings to cut cost",
+        "Benchmark latency across providers and model sizes",
+        "Trade off cost, latency and answer quality explicitly"
+      ]
+    },
+    {
+      "day": 27,
+      "module_id": 7,
+      "module": "Evaluation, Security & Deployment",
+      "title": "AI Security & Safety",
+      "type": "concept",
+      "tools": ["Pydantic validation", "guardrails", "OWASP LLM Top 10"],
+      "objectives": [
+        "Defend against prompt injection and jailbreak attempts",
+        "Validate and sanitize user input at the API boundary",
+        "Protect PII and secrets in prompts, logs and traces",
+        "Apply authentication, authorization and rate limiting to AI endpoints"
+      ]
+    },
+    {
+      "day": 28,
+      "module_id": 7,
+      "module": "Evaluation, Security & Deployment",
+      "title": "Containerization & Deployment",
+      "type": "build",
+      "tools": ["Docker", "Kubernetes", "cloud hosting"],
+      "objectives": [
+        "Write a production Dockerfile for an AI service",
+        "Configure health checks and readiness probes",
+        "Deploy and scale on Kubernetes or a managed host",
+        "Manage secrets and configuration per environment"
+      ]
+    },
+    {
+      "day": 29,
+      "module_id": 8,
+      "module": "Production & Capstone",
+      "title": "Monitoring, Logging & Observability",
+      "type": "build",
+      "tools": ["Prometheus", "Grafana", "structured logging"],
+      "objectives": [
+        "Emit structured logs for every LLM call",
+        "Expose latency, token and error metrics to Prometheus",
+        "Build a Grafana dashboard for an AI service",
+        "Track and alert on failure patterns and quality drift"
+      ]
+    },
+    {
+      "day": 30,
+      "module_id": 8,
+      "module": "Production & Capstone",
+      "title": "End-to-End Production Testing & Documentation",
+      "type": "project",
+      "tools": ["pytest", "load testing", "documentation"],
+      "objectives": [
+        "Write integration tests across the full pipeline",
+        "Load test the API and find the real bottleneck",
+        "Document setup, architecture and operational runbooks",
+        "Prepare a rollback plan for a bad deploy"
+      ]
+    },
+    {
+      "day": 31,
+      "module_id": 8,
+      "module": "Production & Capstone",
+      "title": "Capstone Demo",
+      "type": "capstone",
+      "tools": ["Full stack"],
+      "objectives": [
+        "Present a complete AI system end to end",
+        "Justify architecture decisions and their trade-offs",
+        "Demonstrate evaluation results and known limitations",
+        "Outline what the next iteration would change"
+      ]
+    }
+  ]
+}
