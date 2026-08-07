@@ -20,9 +20,9 @@ export default function TypingIndicator() {
                    shadow-[0_1px_2px_rgba(0,0,0,0.06)]"
       >
         <span className="flex items-center gap-1" aria-hidden="true">
-          <span className="dot h-1.5 w-1.5 rounded-full bg-accent" />
-          <span className="dot h-1.5 w-1.5 rounded-full bg-accent" />
-          <span className="dot h-1.5 w-1.5 rounded-full bg-accent" />
+          <span className="dot h-1.5 w-1.5 rounded-full bg-accent-strong" />
+          <span className="dot h-1.5 w-1.5 rounded-full bg-accent-strong" />
+          <span className="dot h-1.5 w-1.5 rounded-full bg-accent-strong" />
         </span>
         <span className="text-[12.5px] font-medium text-text-secondary">ProbeAI is thinking…</span>
       </div>

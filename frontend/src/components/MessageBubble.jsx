@@ -21,7 +21,7 @@ export function Avatar({ isActive, size = 'md' }) {
       <span
         aria-hidden="true"
         className={`absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-surface
-                   ${isActive ? 'bg-accent' : 'bg-success'}`}
+                   ${isActive ? 'bg-accent-strong' : 'bg-success'}`}
       />
     </span>
   )

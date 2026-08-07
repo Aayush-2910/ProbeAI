@@ -25,8 +25,8 @@ export default function Header({ candidate, isDark, toggleTheme, isDemo }) {
             // Truncation order on narrow viewports: years first, then role.
             <div className="flex min-w-0 items-center gap-2 truncate rounded-full border border-border
                             bg-surface px-3.5 py-1.5 text-[13px] font-medium text-text-secondary">
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-              <span className="truncate font-semibold text-text">{pill.name}</span>
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-strong" aria-hidden="true" />
+              <span className="min-w-0 truncate font-semibold text-text">{pill.name}</span>
               {pill.role && (
                 <>
                   <span className="hidden text-border sm:inline" aria-hidden="true">|</span>

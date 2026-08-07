@@ -64,7 +64,7 @@ function areaPath(points, height, pad) {
 
 function CardShell({ className = '', children }) {
   return (
-    <div className={`glow-hover relative overflow-hidden rounded-2xl border border-border bg-surface px-6 py-6 ${className}`}>
+    <div className={`glow-hover relative overflow-hidden rounded-2xl border border-border bg-surface px-4 py-5 sm:px-6 sm:py-6 ${className}`}>
       <span className="absolute inset-x-0 top-0 h-px accent-line" aria-hidden="true" />
       {/* Faint dot field, matching the page background, so the card doesn't
           read as a flat rectangle behind the chart. */}
@@ -123,8 +123,8 @@ function AccuracyTrendCard() {
           <h3 className="text-[12px] font-bold uppercase tracking-[0.08em] text-text-secondary">
             Overall Accuracy
           </h3>
-          <div className="mt-2 flex items-baseline gap-2.5">
-            <span className="font-mono text-[34px] font-bold leading-none tabular-nums text-text">
+          <div className="mt-2 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+            <span className="font-mono text-[28px] font-bold leading-none tabular-nums text-text sm:text-[34px]">
               {current.toFixed(0)}%
             </span>
             <Delta value={delta} suffix="%" />
@@ -143,7 +143,7 @@ function AccuracyTrendCard() {
             </linearGradient>
             <linearGradient id="accuracy-line" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stopColor="var(--accent-muted)" />
-              <stop offset="100%" stopColor="var(--accent)" />
+              <stop offset="100%" stopColor="var(--accent-strong)" />
             </linearGradient>
             <filter id="accuracy-glow" x="-60%" y="-60%" width="220%" height="220%">
               <feGaussianBlur stdDeviation="4" result="blur" />
@@ -179,11 +179,11 @@ function AccuracyTrendCard() {
 
           {inView && (
             <>
-              <circle cx={last[0]} cy={last[1]} r="4" fill="var(--accent)">
+              <circle cx={last[0]} cy={last[1]} r="4" fill="var(--accent-strong)">
                 <animate attributeName="r" values="4;10;4" dur="2.6s" begin="1.2s" repeatCount="indefinite" />
                 <animate attributeName="opacity" values="0.45;0;0.45" dur="2.6s" begin="1.2s" repeatCount="indefinite" />
               </circle>
-              <circle cx={last[0]} cy={last[1]} r="3.5" fill="var(--accent)" stroke="var(--surface)" strokeWidth="1.5" />
+              <circle cx={last[0]} cy={last[1]} r="3.5" fill="var(--accent-strong)" stroke="var(--surface)" strokeWidth="1.5" />
             </>
           )}
         </svg>
@@ -221,7 +221,7 @@ function BreakdownCard() {
                   className="relative w-full overflow-hidden rounded-md"
                   style={{
                     height: inView ? `${(item.value / max) * 100}%` : '0%',
-                    background: 'linear-gradient(180deg, var(--accent) 0%, var(--accent-muted) 100%)',
+                    background: 'linear-gradient(180deg, var(--accent-strong) 0%, var(--accent-muted) 100%)',
                     filter: 'drop-shadow(0 2px 8px var(--accent-glow))',
                     transition: `height 850ms cubic-bezier(0.16, 1, 0.3, 1) ${index * 130 + 150}ms`,
                   }}
@@ -262,8 +262,8 @@ function VolumeTrendCard() {
           <h3 className="text-[12px] font-bold uppercase tracking-[0.08em] text-text-secondary">
             Interviews Completed
           </h3>
-          <div className="mt-2 flex items-baseline gap-2.5">
-            <span className="font-mono text-[34px] font-bold leading-none tabular-nums text-text">
+          <div className="mt-2 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+            <span className="font-mono text-[28px] font-bold leading-none tabular-nums text-text sm:text-[34px]">
               {Math.round(displayed).toLocaleString()}+
             </span>
             <Delta value={weekly} suffix=" this week" />

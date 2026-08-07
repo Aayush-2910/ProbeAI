@@ -16,7 +16,7 @@ export default function CandidateRow({ candidate, isSelected, onSelect }) {
       className={`glow-hover w-full border-l-[3px] px-4 py-3.5 text-left transition-all duration-150
         ${
           isSelected
-            ? 'border-accent bg-elevated'
+            ? 'border-accent-strong bg-elevated'
             : 'border-transparent hover:border-accent-muted hover:bg-hover'
         }
         focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-muted focus-visible:ring-inset`}
@@ -30,7 +30,7 @@ export default function CandidateRow({ candidate, isSelected, onSelect }) {
                       font-bold transition-colors
                       ${
                         isSelected
-                          ? 'border-accent bg-accent text-btn-text'
+                          ? 'border-btn-bg bg-btn-bg text-btn-text'
                           : 'border-border bg-elevated text-accent-strong'
                       }`}
         >

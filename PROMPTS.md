@@ -18,7 +18,7 @@ Part 2 sees why it behaves like an interviewer instead of a chatbot with a quest
 | Product runs on | Google Gemini (`gemini-2.5-flash`) via the `google-genai` SDK |
 | Human role | wrote every architecture spec, reviewed every output, corrected the model where it was wrong (§5) |
 | Model role | implemented modules to spec, generated the 31-day curriculum and 20 candidate profiles, wrote the architecture documents, scaffolded the frontend |
-| Build date | 7 August 2026, single session |
+| Build date | 7–8 August 2026, two sessions — backend + specs, then the frontend build |
 
 ---
 
@@ -142,6 +142,197 @@ ordering rule, `useInterview.js` carries retry-without-duplicate, `CandidateSele
 
 An audit request, answered with evidence rather than agreement. Five rules held; three did not. The
 findings are in §5.3.
+
+---
+
+### 1.3 The frontend build — implementation, then eleven rounds of correction
+
+Prompts 1–5 produced a spec and a contract-stubbed scaffold. Everything from here is the second
+session: turning that scaffold into a running product, almost entirely through iterative correction —
+the human looked at what got built, said what was wrong, and the fix landed before the next prompt.
+That loop is the most instructive part of this log, because it is where the real bugs are.
+
+---
+
+#### Prompt 6 — Standalone frontend, no backend assumption
+
+> *"I'm currently working only on the frontend. Do not implement or assume any backend functionality
+> yet. First, build the complete frontend UI based on the available project requirements and data.
+> I will review the backend responses later and handle the API integration separately."*
+
+**Produced:** a mock/live switch in `utils/api.js` (`VITE_API_MODE`, default `mock`), and
+`mocks/mockApi.js` — a self-contained simulation of the real response contract (personalised opening,
+follow-ups on thin answers, an 8-question exit, transcript-grounded feedback) built from the *real*
+`candidates.json`/`curriculum.json`, not duplicated fixtures. A "Demo data" badge in the header so mock
+output is never mistaken for a real interview. The live code path was written but never exercised —
+this is why mock mode exists at all, and it is the reason the whole redesign that follows could be
+reviewed screenshot-by-screenshot with no backend running.
+
+---
+
+#### Prompt 7 — Full visual redesign: "Agentic AI Command Center"
+
+A long, detailed spec: dark/light dual palette, a dot-grid background, glow effects, a pulse-ring
+avatar, candidate cards replacing the dropdown, a live stats bar, the Doto font for all UI text.
+
+**Produced:** the full redesign — CSS custom-property tokens for both themes, a `glow-hover` utility
+(first version: a cursor-tracked spotlight), candidate selection rebuilt as a card grid, a stats bar,
+every component restyled to the new system. This is the point at which the project stopped looking
+like a template.
+
+---
+
+#### Prompt 8 — Typography correction (a real accessibility bug, not a taste note)
+
+> *"The font is difficult to read and the text is not clearly visible. This is especially noticeable
+> in the subheadings and descriptions."*
+
+Doto is a **dot-matrix display font** — designed for large, bold, sparse text, not body copy. At the
+weights and sizes a real UI needs (11–13px labels, `font-light` secondary text), it degrades exactly
+where the complaint said it would. Auditing it surfaced a second, independent bug: `--text-muted` in
+dark mode measured **~3:1 contrast** against `--surface` — under the WCAG AA floor of 4.5:1 for normal
+text — regardless of font.
+
+**Fix:** dropped Doto for body text (kept only for two-and-a-half decorative digits, later dropped
+entirely), switched to Inter everywhere, and recomputed every muted/secondary text token with actual
+relative-luminance contrast math rather than "looks fine." `font-light` was banned outright — nothing
+in the app renders below weight 400 anymore.
+
+---
+
+#### Prompt 9 — Candidate workspace + landing sections
+
+> *"Redesign this section to be more compact, attractive, and interactive... two-panel selection
+> layout... Also improve the overall landing page by adding: AI Performance / Accuracy Stats, How It
+> Works."*
+
+**Produced:** `CandidateCard.jsx` deleted; replaced with `CandidateList.jsx` + `CandidateRow.jsx` (a
+compact scrollable list) and `CandidateDetail.jsx` (a preview pane with real profile stats — never a
+claim about what the AI will actually ask, since the real plan is decided server-side). Added
+`HowItWorks.jsx` (5-step flow) and a first version of `PerformanceStats.jsx` (5 radial gauge cards,
+illustrative figures, clearly captioned as such).
+
+---
+
+#### Prompt 10 — "Too small" and "too boring": two corrections in one round
+
+> *"Increase their size properly according to a modern desktop web viewport... Replace the current
+> number-based stats with attractive graphs/charts... Make the stats section more engaging."*
+
+The screenshot showed a real problem: a two-panel workspace sized for a phone, floating in acres of
+dead space on a 1440px screen. **Fix:** panel width 280px→340px, list height near-doubled, avatar and
+type scale increased across the board. Separately, `PerformanceStats.jsx` was torn down and rebuilt as
+a 3-card mini-dashboard — a hero accuracy trend line, a bar-chart breakdown, a volume area chart — all
+hand-drawn SVG, since the project has a standing "no additional UI library" rule and that includes
+charting libraries.
+
+---
+
+#### Prompt 11 — "Moving glow": built the wrong thing once, then the right one
+
+First read of *"glowing card and buttons, moving on hover"* was a cursor-tracked spotlight: a JS
+`mousemove` handler writing `--mx`/`--my` custom properties, consumed by a radial-gradient `::before`.
+Implemented, wired across ~10 components, then the human clarified:
+
+> *"glowing card and buttons in the sense their border should moving on hover and glowing understand"*
+
+That's a different mechanism — an animated gradient *ring*, not a fill. Rewrote `.glow-hover` as a
+pure-CSS `::after` using the `mask-composite: exclude` border trick, with `background-position`
+animated via `@keyframes` on `:hover`. Net effect: **deleted the JS entirely** — `utils/glow.js`, every
+`onMouseMove` prop, and (once the ring turned out to sit outside the box, never overlapping the fill)
+the `glow-hover-invert` variant that had been added to work around the spotlight painting the same
+colour over itself on `bg-btn-bg` buttons. The corrected version is simpler than the wrong one.
+
+---
+
+#### Prompt 12 — The bar chart that wasn't there, then "more beautiful"
+
+A screenshot showed the Evaluation Breakdown card with labels and percentages but **no visible bars**.
+Root cause was a classic CSS trap: the bar-fill div used `height: 100%`, but its parent was an
+auto-height flex column — a percentage height against an `auto`-height containing block resolves to
+nothing. Fixed by switching the column to `items-stretch` (inheriting the row's fixed height) and the
+fill to `flex-1`.
+
+> *"Make the graphs even more beautiful and visually aligned with the existing theme. Use elegant
+> gradients, subtle glow effects, smooth curves..."*
+
+Once the bars actually rendered, upgraded the whole chart set: replaced the quadratic-midpoint line
+smoothing with a real Catmull-Rom-to-Bézier spline, added SVG `feGaussianBlur` glow filters and
+gradient strokes, and added `useCountUp` (RAF-driven, eased) so the headline numbers animate in rather
+than appearing static.
+
+---
+
+#### Prompt 13 — Interview page only, explicitly scoped
+
+> *"Redesign only the interview page... Do not change the candidate selection page, landing page,
+> routing, or any existing functionality."*
+
+Because `Header.jsx` is shared between both pages, it was left untouched to honour the boundary
+literally — every change was scoped to components that only render once `isInterviewing` is true.
+**Produced:** `StatsBar.jsx` rebuilt into an agent-presence bar (avatar, name, live status: Listening /
+Thinking / Session complete), a shared `Avatar` component with an always-on presence dot, per-message
+timestamps (shown once per consecutive group, not spammed), a "Live session" cue above the input, and
+a soft top-fade mask where the transcript scrolls under the session bar.
+
+---
+
+#### Prompt 14 — Light mode, twice: a preference pass, then a real bug
+
+> *"Avoid using plain white... reduce green usage, use only as accent... premium and highly readable."*
+
+Rewrote every light-mode surface token from green-tinted near-white to a neutral warm ivory/grey scale,
+and darkened `--accent-strong` for better contrast — computed, not eyeballed (~8.7:1 against the new
+surface, up from ~6:1 against pure white).
+
+A second message, with a screenshot, found something the first pass didn't:
+
+> *"in light mode this green color using its very light make them darker so easily visible"*
+
+The screenshot showed a selected-candidate avatar with initials that had **completely vanished**. Root
+cause: `CandidateRow.jsx` paired `bg-accent` with `text-btn-text`. `--btn-text` is defined relative to
+`--btn-bg`, not `--accent` — the two only happen to be the same colour in dark mode (both lime), so the
+pairing worked by coincidence and broke the moment light mode used a different `--btn-bg`. Grepping the
+codebase for the same pattern found **eight more instances** — status dots, the typing indicator, a
+progress bar, a chart line and its endpoint markers — all using raw `--accent` as a small solid fill,
+which measures roughly **1.02:1 contrast** against the new light surface (i.e., not visible at all).
+Fixed every instance by switching to `--accent-strong` (lime in dark mode, unchanged; a rich dark green
+in light mode, actually visible), and fixed the pairing bug itself by using `--btn-bg`/`--btn-text` as
+a matched pair instead of mixing tokens from two different pairs.
+
+---
+
+#### Prompt 15 — A font swap, flagged before it was applied
+
+> *"use this font in entire website except heading of website name ProbeAI"* — Nova Square, with the
+> `@font-face`/CSS supplied.
+
+Nova Square ships **one weight** (400). The whole design system leans on `font-bold`/`font-semibold`
+for hierarchy — stat numbers, card headings, buttons. Flagged the consequence (the browser will
+synthesize "faux bold" for all of it) in one sentence, then implemented exactly as asked: Nova Square
+as the new `font-sans` default, Inter kept only on `font-logo` (the four literal PROBEAI wordmark
+instances — verified by grep, not assumed).
+
+---
+
+#### Prompt 16 — Full responsive audit against a stated breakpoint spec
+
+A precise brief: four named breakpoints (mobile 320–480, large-mobile 481–767, tablet 768–1024, desktop
+1025+) and a nine-point checklist (layout, nav, text, media, touch targets, spacing, tables, forms,
+sidebars). Instruction: list every component first, then go through them one at a time.
+
+Audited all 18 components against computed available-width math (not a visual guess) and found six real
+issues: `ThemeToggle`, the footer's GitHub link, and the candidate-list Retry button all resolved to
+touch targets under the 44×44px minimum; the header's candidate-pill name had `truncate` without the
+`min-width: 0` a flex child needs for `truncate` to actually engage; `CandidateDetail`'s three stat
+chips could overflow at 320px because a single-word label like "Completed" has no space to wrap at;
+the footer grid went straight to 2 columns at 320px instead of stacking; and `HowItWorks` switched from
+stacked to a 5-card row at 640px — leaving no room for five 64px icon circles through the entire
+large-mobile and tablet range — moved to a `lg:` (1024px) breakpoint instead. Two more components
+(`PerformanceStats` headline rows, the two error-banner dismiss buttons) got defensive `flex-wrap` /
+sizing fixes even though the failure mode was narrower. Twelve components were already correctly
+responsive and were left untouched, with the specific pattern that made them correct noted rather than
+assumed.
 
 ---
 
@@ -344,7 +535,40 @@ knowledge are hardcoded in Python (`CORE_DAYS`, the day-31 synthesis target) ins
 architecture, which deliberately keeps the candidate fetch, the input draft, and the scroll ref inside
 components. Resolution proposed: extract `useCandidates()` and `useChatDraft()` called *inside* their
 components — which satisfies the rule at zero re-render cost, because a hook called inside a component
-keeps re-renders exactly as local as `useState` does.
+keeps re-renders exactly as local as `useState` does. (Both since implemented — the static mount is
+live, §Part 4.)
+
+**3.6 A same-colour text-on-fill collision that only broke in one theme.** `CandidateRow.jsx` styled a
+selected candidate's avatar as `bg-accent text-btn-text`. `--btn-text` is paired with `--btn-bg`, not
+with `--accent` — they only happen to be equal in dark mode. Light mode gave the circle a pale-lime
+fill and pale-lime text: the initials were literally invisible, not just low-contrast. Caught from a
+user screenshot, not from review — this class of bug (two tokens from different pairs that coincide in
+one theme) doesn't show up in a single-theme read-through. The fix was systematic: grep the codebase
+for every other place raw `--accent` was used as a small solid fill (eight more spots), and replace
+with `--accent-strong`, which is defined per-theme specifically to stay legible as a foreground colour.
+
+**3.7 `height: 100%` on an auto-height parent — a chart with no visible bars.** The Evaluation
+Breakdown bar chart rendered its percentage labels correctly but the bars themselves never appeared.
+The bar-fill div used `height: 100%`; its parent was a flex column sized by content (`height: auto`).
+Per spec, a percentage height against an `auto`-height containing block resolves to nothing — the div
+was there, just zero pixels tall. This is a well-known CSS trap precisely because it fails silently:
+no console error, no layout warning, just an empty box. Fixed with `items-stretch` on the row plus
+`flex-1` on the fill, which sidesteps percentage resolution entirely.
+
+**3.8 Solved the wrong problem once, on "moving glow."** Read *"glowing card and buttons... moving on
+hover"* as a cursor-tracked spotlight and shipped a JS `mousemove` handler wired across ten components
+before the human clarified they meant an animated border. The corrected CSS-only version is strictly
+simpler than what it replaced — a sign the first read added machinery the request never asked for.
+Worth naming because the fix wasn't "add the right thing," it was "delete the wrong thing and replace
+it with less code."
+
+**3.9 A div-nesting slip caught by a parser, not by eye.** Adding a top fade-mask overlay to
+`ChatWindow.jsx` required wrapping the existing scroll container in two new divs. The first edit added
+the new opening tags without their closing tags yet; a second edit closed them, but miscounted by one,
+leaving `<div>` at line 21 unclosed. TypeScript's JSX checker flagged it as a live diagnostic
+mid-edit — confirmed by running the file through `esbuild` in isolation (parses to a valid bundle or it
+doesn't; no ambiguity) rather than trusting a manual re-read, which is exactly the kind of off-by-one a
+manual re-read is bad at catching.
 
 ---
 
@@ -357,9 +581,13 @@ keeps re-renders exactly as local as `useState` does.
 | Backend architecture doc | complete |
 | Live Gemini run | **not yet performed** — no API key was present in the build environment, so prompt tuning (Part 2) and per-archetype review are open |
 | Frontend architecture doc | complete |
-| Frontend code | implemented — 11 components, 4 hooks, 2 utils; production build clean; all flows verified in a DOM harness |
+| Frontend code | implemented — 18 components, 7 hooks, 2 utils; production build clean |
+| Mock mode | complete — the full UI runs standalone on bundled sample data, zero backend calls |
 | Static-file deploy (`frontend/dist` served by FastAPI) | wired; API routes verified unshadowed |
-| Visual QA in a real browser | **not yet done** — behaviour is tested, appearance is not |
+| Visual redesign | complete — "Agentic AI Command Center" theme, dual light/dark palette, hand-drawn SVG charts, moving border-glow on cards/buttons |
+| Responsive audit | complete — all 18 components checked against a 320px–desktop breakpoint spec; 6 real issues found and fixed, 12 already correct |
+| Accessibility | contrast tokens computed (not eyeballed) for both themes; `prefers-reduced-motion` respected; 44px touch targets audited |
+| Live Gemini interview, seen in a real browser | **not yet done** — behaviour is tested (DOM harness) and appearance is verified structurally (contrast math, computed layout); nobody has watched a real interview render live |
 
 Nothing in this repository is claimed to work that has not been run.
 
@@ -368,19 +596,26 @@ Nothing in this repository is claimed to work that has not been run.
 ## Part 5 — Reproducing this build
 
 ```bash
+# backend
 pip install -r requirements.txt
 cp .env.example .env                 # add your GEMINI_API_KEY
 python scripts/preview_plan.py CAND-001   # the planner, no API key needed
 uvicorn main:app --reload --app-dir backend
 python scripts/interview_cli.py CAND-010  # full interview in the terminal
+
+# frontend — no API key needed at all (mock mode is the default)
+cd frontend && npm install && npm run dev
 ```
 
 `scripts/preview_plan.py` is the fastest way to see the non-generative half of the system: it prints
 the exact plan any of the 20 candidates would receive — priorities, signals, objectives, and the
-calibrated question stems — with no LLM involved at all.
+calibrated question stems — with no LLM involved at all. `npm run dev` is the fastest way to see the
+frontend: pick a candidate, take a full interview, read the feedback card — none of it touches a
+server.
 
 To reproduce the build itself: feed Appendix A to a coding agent for the backend, then Appendix B for
-the frontend. The specs are the artifact; the code is downstream of them.
+the frontend, then work through §1.3's prompt-by-prompt corrections in order — most of the real
+engineering in this project happened in that loop, not in the first pass.
 
 ---
 

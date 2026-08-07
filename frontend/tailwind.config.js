@@ -12,9 +12,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        // Kept as a distinct name (not a distinct family) so the wordmark's
-        // heavy tracking reads as an intentional lockup, not a body-text slip.
+        sans: ['Nova Square', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // The one exception: the PROBEAI wordmark keeps Inter. Nova Square
+        // ships a single weight (400) — font-bold/font-semibold elsewhere
+        // fall back to the browser's synthetic ("faux") bold.
         logo: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },

@@ -46,10 +46,10 @@ export default function InterviewView({
         <div className="shrink-0 px-4 pt-3 sm:px-6">
           <div
             role="alert"
-            className="mx-auto flex w-full max-w-chat items-start gap-3 rounded-xl border
-                       border-border bg-tintDanger px-4 py-2.5 text-[13px] text-text"
+            className="mx-auto flex w-full max-w-chat items-center gap-3 rounded-xl border
+                       border-border bg-tintDanger py-1 pl-4 pr-1 text-[13px] text-text"
           >
-            <span className="flex-1 font-normal leading-relaxed">{error.message}</span>
+            <span className="flex-1 py-1.5 font-normal leading-relaxed">{error.message}</span>
             {error.kind === 'session-expired' && (
               <button
                 type="button"
@@ -64,8 +64,9 @@ export default function InterviewView({
               type="button"
               onClick={onDismissError}
               aria-label="Dismiss error"
-              className="shrink-0 rounded px-1 text-text-muted transition-colors hover:text-text
-                         focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-muted"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded text-text-muted
+                         transition-colors hover:text-text focus:outline-none focus-visible:ring-2
+                         focus-visible:ring-accent-muted"
             >
               ✕
             </button>

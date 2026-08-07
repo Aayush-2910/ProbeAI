@@ -23,6 +23,22 @@ way a senior engineer running a real 1-on-1 would.
 
 ---
 
+## Try it in 30 seconds — no API key needed
+
+The frontend defaults to **mock mode**: the entire UI — candidate selection, a full adaptive interview,
+charts, feedback — runs on bundled sample data with zero network calls. This is how you demo the product
+without a Gemini key.
+
+```bash
+cd frontend && npm install && npm run dev
+# open http://localhost:5173 — pick a candidate, take the interview
+```
+
+Flip `VITE_API_MODE=live` in `frontend/.env` (plus a real `GEMINI_API_KEY` in the root `.env`) to talk
+to the actual backend instead. Nothing else about the UI changes — same components, same code path.
+
+---
+
 ## Architecture at a glance
 
 ```
@@ -51,7 +67,9 @@ model_says_closing)` — model judgment strictly inside hard-coded bounds.
 | Backend | Python 3.11 · FastAPI · Uvicorn · Pydantic v2 |
 | LLM | Google Gemini (`gemini-2.5-flash`) with structured JSON output |
 | Storage | In-memory session dict — no database, no auth by design |
-| Frontend | React 18 · Vite · Tailwind (no UI or icon libraries) |
+| Frontend | React 18 · Vite · Tailwind — 18 components, 7 hooks, no UI or icon libraries |
+| Charts | Hand-drawn SVG (line/area/bar) — no charting library |
+| Fonts | Nova Square (UI text) · Inter (the PROBEAI wordmark only) |
 
 ---
 
@@ -60,7 +78,7 @@ model_says_closing)` — model judgment strictly inside hard-coded bounds.
 ```bash
 # 1. backend
 pip install -r requirements.txt
-cp .env.example .env          # add your GEMINI_API_KEY
+cp .env.example .env          # add your GEMINI_API_KEY (or skip — see mock mode above)
 
 # 2. frontend
 cd frontend && npm install && npm run build && cd ..
@@ -140,13 +158,29 @@ fine-tuning, agents and MCP, evaluation and security, to production and capstone
 
 ---
 
+## The frontend
+
+Two pages, one SPA (state-based view switching, no router):
+
+- **Landing** — hero, a two-panel candidate workspace (scrollable list + selected-candidate preview
+  with a factual profile breakdown), a "How It Works" step flow, an "AI Performance" mini-dashboard
+  (animated line/bar/area charts, hand-drawn SVG), and a footer.
+- **Interview** — a live session bar (agent presence, status, question count, elapsed time, progress),
+  the chat transcript with timestamps and a typing indicator, and the answer input. Ends in a
+  feedback card with strengths / areas to improve / next steps.
+
+Both dark (default) and light themes are fully tokenized — no hardcoded colors, no `dark:` variants in
+components. Responsive from 320px to desktop, with real touch targets (44×44px minimum) throughout.
+
+---
+
 ## Documentation
 
 | Document | What it covers |
 |---|---|
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Backend contract — module signatures, session schema, planner algorithm, prompt architecture, state machine, work breakdown |
 | [FRONTEND-ARCHITECTURE.md](FRONTEND-ARCHITECTURE.md) | Frontend contract — token strategy, state ownership, component props, error taxonomy, motion and accessibility |
-| [PROMPTS.md](PROMPTS.md) | How this was built, and the prompts that run inside it — persona, the ten interviewer rules, closing directives, evaluator constraints |
+| [PROMPTS.md](PROMPTS.md) | How this was built, and the prompts that run inside it — persona, the ten interviewer rules, closing directives, evaluator constraints, and every real bug the iteration process caught |
 
 ---
 
@@ -159,16 +193,11 @@ Stated plainly, because a README that overclaims is worse than one that undercla
 | Backend — 9 modules | ✅ implemented, passes the offline suite end to end |
 | `curriculum.json` · `candidates.json` | ✅ 31 days, 20 profiles |
 | Architecture specs (backend + frontend) | ✅ complete |
-| Frontend — 11 components, 4 hooks, 2 utils | ✅ implemented; production build clean |
+| Frontend — 18 components, 7 hooks | ✅ implemented; production build clean; mock mode needs no backend |
 | Static deploy (`frontend/dist` served by FastAPI) | ✅ wired, API routes verified unshadowed |
+| Responsive layout, 320px–desktop | ✅ audited component-by-component; see PROMPTS.md for specifics |
 | Live Gemini run | ⚠️ not yet performed — prompt tuning and per-archetype review are open |
-| Visual QA in a real browser | ⚠️ flows verified in a DOM harness, not yet eyeballed at 1440px/375px |
-
-**How the frontend was verified:** the real bundle is executed in a JSDOM harness against a stubbed
-backend, driving landing → start → answer → completion → feedback → reset, plus a forced 503 with
-retry and a theme toggle. It asserts the things that are easy to get wrong: the draft clears only
-after send, retry resends *without* duplicating the bubble, the input unmounts when the interview
-ends, the word "Gaps" never reaches the UI, and the theme persists to `localStorage`.
+| Visual QA in a real browser | ⚠️ verified structurally (DOM harness, contrast math); not yet eyeballed live |
 
 Nothing here is claimed to work that has not been run.
 
@@ -179,7 +208,12 @@ Nothing here is claimed to work that has not been run.
 ```
 backend/          FastAPI app — 9 single-responsibility modules
   data/           curriculum.json (31 days) · candidates.json (20 profiles)
-frontend/         React + Vite + Tailwind — scaffold with contract stubs
+frontend/         React + Vite + Tailwind
+  src/
+    components/   18 components — landing page + interview page
+    hooks/        7 hooks — all state logic lives here, components are pure UI
+    mocks/        mockApi.js — mirrors the real API contract, no backend needed
+    utils/        api.js (mock/live switch) · helpers.js (pure formatters)
 scripts/          preview_plan.py · interview_cli.py
 ARCHITECTURE.md  FRONTEND-ARCHITECTURE.md  PROMPTS.md
 ```

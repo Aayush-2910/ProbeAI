@@ -31,9 +31,9 @@ export default function CandidateSelector({ onStart, isStarting }) {
           <button
             type="button"
             onClick={retry}
-            className="glow-hover lift rounded-lg border border-border px-5 py-2.5 text-[13.5px] font-semibold
-                       text-text hover:border-accent-muted focus:outline-none focus-visible:ring-2
-                       focus-visible:ring-accent-muted"
+            className="glow-hover lift flex min-h-11 items-center rounded-lg border border-border px-5
+                       text-[13.5px] font-semibold text-text hover:border-accent-muted focus:outline-none
+                       focus-visible:ring-2 focus-visible:ring-accent-muted"
           >
             <span className="relative">Retry</span>
           </button>

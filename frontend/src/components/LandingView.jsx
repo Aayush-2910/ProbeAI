@@ -50,16 +50,17 @@ export default function LandingView({ onStart, isLoading, error, onDismissError 
         {error && (
           <div
             role="alert"
-            className="mt-5 flex w-full max-w-lg items-start gap-3 rounded-xl border border-border
-                       bg-tintDanger px-4 py-3 text-left text-[13px] text-text"
+            className="mt-5 flex w-full max-w-lg items-center gap-3 rounded-xl border border-border
+                       bg-tintDanger py-1 pl-4 pr-1 text-left text-[13px] text-text"
           >
-            <span className="flex-1 font-normal leading-relaxed">{error.message}</span>
+            <span className="flex-1 py-2 font-normal leading-relaxed">{error.message}</span>
             <button
               type="button"
               onClick={onDismissError}
               aria-label="Dismiss error"
-              className="shrink-0 rounded px-1 text-text-muted transition-colors hover:text-text
-                         focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-muted"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded text-text-muted
+                         transition-colors hover:text-text focus:outline-none focus-visible:ring-2
+                         focus-visible:ring-accent-muted"
             >
               ✕
             </button>

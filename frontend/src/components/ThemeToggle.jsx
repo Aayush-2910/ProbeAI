@@ -29,9 +29,10 @@ export default function ThemeToggle({ isDark, onToggle }) {
       onClick={onToggle}
       // aria-label names the TARGET theme, not the current one.
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="glow-hover rounded-lg border border-transparent p-2 text-text-secondary transition-all
-                 duration-200 hover:border-border hover:text-accent-strong hover:shadow-[0_0_16px_var(--accent-glow)]
-                 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-muted"
+      className="glow-hover flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border
+                 border-transparent text-text-secondary transition-all duration-200 hover:border-border
+                 hover:text-accent-strong hover:shadow-[0_0_16px_var(--accent-glow)] focus:outline-none
+                 focus-visible:ring-2 focus-visible:ring-accent-muted"
     >
       {/* relative: paints above the glow-hover ::before, which is itself
           absolutely positioned and would otherwise cover static content. */}

@@ -52,8 +52,8 @@ export default function FeedbackCard({ feedback, onReset }) {
       <div className="relative">
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-accent to-transparent" />
 
-        <div className="px-6 py-7 sm:px-8">
-        <div className="flex items-center justify-between gap-4">
+        <div className="px-5 py-6 sm:px-8 sm:py-7">
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5">
           <h3 className="text-[13px] font-bold uppercase tracking-[0.12em] text-text">
             Assessment Summary
           </h3>

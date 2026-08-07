@@ -30,8 +30,9 @@ export default function Footer() {
 
   return (
     <footer className="w-full border-t border-border">
-      <div className="mx-auto grid w-full max-w-shell grid-cols-2 gap-x-8 gap-y-10 px-6 py-14 sm:px-8 lg:grid-cols-4">
-        <div className="col-span-2 lg:col-span-1">
+      <div className="mx-auto grid w-full max-w-shell grid-cols-1 gap-x-8 gap-y-10 px-5 py-10
+                      sm:grid-cols-2 sm:px-8 sm:py-14 lg:grid-cols-4">
+        <div className="sm:col-span-2 lg:col-span-1">
           <span className="font-logo text-[15px] font-bold uppercase tracking-[0.28em] text-logo">
             ProbeAI
           </span>
@@ -43,7 +44,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="ProbeAI on GitHub"
-            className="glow-hover mt-5 inline-flex h-10 w-10 items-center justify-center rounded-lg
+            className="glow-hover mt-5 inline-flex h-11 w-11 items-center justify-center rounded-lg
                        border border-border text-text-secondary transition-colors
                        hover:border-accent-muted hover:text-accent-strong focus:outline-none
                        focus-visible:ring-2 focus-visible:ring-accent-muted"

@@ -32,7 +32,7 @@ export default function StatsBar({ questionCount, answerCount, startedAt, isLoad
             <div className="flex items-center gap-1.5 text-[11.5px] font-medium text-text-secondary">
               <span
                 className={`h-1.5 w-1.5 rounded-full ${
-                  isDone ? 'bg-success' : isLoading ? 'bg-accent avatar-pulse' : 'bg-success'
+                  isDone ? 'bg-success' : isLoading ? 'bg-accent-strong avatar-pulse' : 'bg-success'
                 }`}
                 aria-hidden="true"
               />
@@ -56,7 +56,7 @@ export default function StatsBar({ questionCount, answerCount, startedAt, isLoad
           <div className="flex min-w-0 flex-1 items-center gap-3">
             <div className="h-[3px] min-w-0 flex-1 overflow-hidden rounded-full bg-track">
               <div
-                className="h-full rounded-full bg-accent transition-all duration-500 ease-out"
+                className="h-full rounded-full bg-accent-strong transition-all duration-500 ease-out"
                 style={{ width: `${progress}%` }}
                 role="progressbar"
                 aria-valuenow={progress}

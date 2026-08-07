@@ -37,9 +37,14 @@ function EmptyIcon() {
 
 function StatChip({ label, value }) {
   return (
-    <div className="flex-1 rounded-xl border border-border bg-surface px-4 py-3.5 text-center">
-      <div className="font-mono text-[19px] font-bold tabular-nums text-text">{value}</div>
-      <div className="mt-1 text-[11.5px] font-medium uppercase tracking-[0.06em] text-text-muted">
+    <div className="min-w-0 flex-1 rounded-xl border border-border bg-surface px-2.5 py-3 text-center sm:px-4 sm:py-3.5">
+      <div className="break-words font-mono text-[16px] font-bold tabular-nums text-text sm:text-[19px]">
+        {value}
+      </div>
+      {/* break-words: a single-word label (e.g. "Completed") has no space to
+          wrap at — without it, a narrow chip on a 320px screen overflows
+          instead of shrinking. */}
+      <div className="mt-1 break-words text-[10.5px] font-medium uppercase tracking-[0.05em] text-text-muted sm:text-[11.5px]">
         {label}
       </div>
     </div>
@@ -48,7 +53,7 @@ function StatChip({ label, value }) {
 
 function BreakdownDot({ tone }) {
   const color = {
-    mastered: 'bg-accent',
+    mastered: 'bg-accent-strong',
     struggled: 'bg-warn',
     failed: 'bg-danger',
     skipped: 'bg-text-muted',
@@ -78,7 +83,7 @@ export default function CandidateDetail({ candidate, isStarting, onStart }) {
   const education = candidate.member?.education
 
   return (
-    <div className="flex flex-1 flex-col p-6 sm:p-8 md:min-h-[540px]">
+    <div className="flex flex-1 flex-col p-5 sm:p-6 md:min-h-[540px] md:p-8">
       <div className="flex items-center gap-4">
         <span
           aria-hidden="true"
@@ -99,7 +104,7 @@ export default function CandidateDetail({ candidate, isStarting, onStart }) {
         <p className="mt-2.5 text-[13px] font-normal text-text-muted">{education}</p>
       )}
 
-      <div className="mt-6 flex gap-3">
+      <div className="mt-6 flex gap-2 sm:gap-3">
         <StatChip label="Completed" value={`${completed}/31`} />
         <StatChip label="First Try" value={`${firstTry}/31`} />
         <StatChip label="Engaged" value={commitDays != null ? `${commitDays}d` : '—'} />

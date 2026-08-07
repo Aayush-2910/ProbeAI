@@ -57,7 +57,7 @@ function ResultIcon() {
 
 function ChevronIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4 rotate-90 text-accent-muted sm:rotate-0" fill="none"
+    <svg viewBox="0 0 24 24" className="h-4 w-4 rotate-90 text-accent-muted lg:rotate-0" fill="none"
       stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M9 6l6 6-6 6" />
     </svg>
@@ -94,7 +94,7 @@ const STEPS = [
 
 function Connector() {
   return (
-    <div className="flex shrink-0 items-center justify-center py-1 sm:flex-col sm:py-0" aria-hidden="true">
+    <div className="flex shrink-0 items-center justify-center py-1 lg:flex-col lg:py-0" aria-hidden="true">
       <ChevronIcon />
     </div>
   )
@@ -124,7 +124,7 @@ function StepCard({ step, index }) {
         </span>
         <span
           className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full
-                     bg-accent text-[11px] font-bold text-[var(--btn-text)] shadow-[0_0_10px_var(--accent-glow)]"
+                     bg-btn-bg text-[11px] font-bold text-btn-text shadow-[0_0_10px_var(--accent-glow)]"
           aria-hidden="true"
         >
           {index + 1}
@@ -151,9 +151,12 @@ export default function HowItWorks() {
         </p>
       </div>
 
-      <div className="mt-12 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:gap-3">
+      {/* Single column (with vertical connectors) through mobile, large-mobile
+          AND tablet — five cards packed into a row before ~1024px leaves no
+          room for the 64px icon circles. Row layout is desktop-only. */}
+      <div className="mt-12 flex flex-col items-stretch gap-2 lg:flex-row lg:items-center lg:gap-3">
         {STEPS.map((step, index) => (
-          <div key={step.title} className="flex flex-col sm:contents">
+          <div key={step.title} className="flex flex-col lg:contents">
             <StepCard step={step} index={index} />
             {index < STEPS.length - 1 && <Connector />}
           </div>
