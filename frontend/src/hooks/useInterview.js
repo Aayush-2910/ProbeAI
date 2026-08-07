@@ -46,6 +46,7 @@ export function useInterview() {
   const [isDone, setIsDone] = useState(false)
   const [feedback, setFeedback] = useState(null)
   const [error, setError] = useState(null)
+  const [startedAt, setStartedAt] = useState(null) // drives the stats-bar timer
 
   // State updates are async, so a rapid double-submit can slip past an
   // isLoading check. The ref closes that window. §6
@@ -64,6 +65,7 @@ export function useInterview() {
       setMessages([])
       setIsLoading(true)
       setError(null)
+      setStartedAt(Date.now())
 
       try {
         const response = await api.startInterview(id, candidate)
@@ -72,6 +74,7 @@ export function useInterview() {
         // Failed start: drop back to the landing view with the error showing.
         setSessionId(null)
         setSelectedCandidate(null)
+        setStartedAt(null)
         setError(describeError(caught))
       } finally {
         setIsLoading(false)
@@ -150,6 +153,7 @@ export function useInterview() {
     setIsDone(false)
     setFeedback(null)
     setError(null)
+    setStartedAt(null)
   }, [])
 
   return {
@@ -160,6 +164,7 @@ export function useInterview() {
     isDone,
     feedback,
     error,
+    startedAt,
     startInterview,
     sendMessage,
     retryLast,

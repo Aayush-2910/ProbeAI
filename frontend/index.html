@@ -7,15 +7,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Inter for all UI text. Doto (dot-matrix display font) was tried for
+         body copy and dropped — it breaks down at small sizes and light
+         weights, which is exactly where subheadings and descriptions live. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
     <!--
-      FRONTEND-ARCHITECTURE.md §3.3 — no-flash theme boot.
-      Dark is the DEFAULT, so the class must be on <html> before the bundle runs.
-      Deciding this inside a useEffect produces a visible light flash on every load.
+      No-flash theme boot. Dark is the DEFAULT, so the class must be on <html>
+      before the bundle runs — deciding it in a useEffect flashes light.
     -->
     <script>
       try {

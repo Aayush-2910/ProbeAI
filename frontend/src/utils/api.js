@@ -3,9 +3,31 @@
  * FRONTEND-ARCHITECTURE.md §7 · backend contract: ARCHITECTURE.md §3
  *
  * Stateless: no module-level mutable state, only network calls.
+ *
+ * MODE SWITCH
+ * -----------
+ * 'mock' (default) runs the whole UI on bundled sample data with no server at
+ * all — see src/mocks/mockApi.js. 'live' calls the real API.
+ *
+ * Set it in frontend/.env:        VITE_API_MODE=live
+ * or flip it at runtime from the browser console, no rebuild needed:
+ *                                 __PROBEAI_API_MODE__ = 'live'
+ *
+ * Everything below the switch is the real integration and is untouched by mock
+ * mode, so wiring the backend later is a one-line change.
  */
 
+import * as mockApi from '../mocks/mockApi'
+
 const API_BASE = '/api'
+
+export function getApiMode() {
+  return globalThis.__PROBEAI_API_MODE__ ?? import.meta.env?.VITE_API_MODE ?? 'mock'
+}
+
+function useMock() {
+  return getApiMode() !== 'live'
+}
 
 // Turns are LLM-bound and routinely take 5-20s. A short timeout fires
 // mid-answer and looks like a bug, so this is deliberately generous. §7
@@ -77,14 +99,17 @@ function postJson(body) {
 }
 
 export function fetchCandidates() {
+  if (useMock()) return mockApi.fetchCandidates()
   return request('/candidates')
 }
 
 /** `candidate` is sent verbatim as served by /api/candidates. Never reshape it. */
 export function startInterview(sessionId, candidate) {
+  if (useMock()) return mockApi.startInterview(sessionId, candidate)
   return request('/interview', postJson({ sessionId, candidate }))
 }
 
 export function sendMessage(sessionId, message) {
+  if (useMock()) return mockApi.sendMessage(sessionId, message)
   return request('/interview', postJson({ sessionId, message }))
 }

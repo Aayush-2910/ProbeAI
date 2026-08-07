@@ -8,6 +8,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
+    // Mock mode imports the real sample data from backend/data/ rather than
+    // keeping a duplicate copy in the frontend, so the dev server needs read
+    // access one level above the project root.
+    fs: { allow: ['..'] },
     proxy: {
       '/api': {
         target: 'http://localhost:8000',

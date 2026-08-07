@@ -9,6 +9,7 @@ import LandingView from './components/LandingView'
 import Layout from './components/Layout'
 import { useInterview } from './hooks/useInterview'
 import { useTheme } from './hooks/useTheme'
+import { getApiMode } from './utils/api'
 
 export default function App() {
   const { isDark, toggleTheme } = useTheme()
@@ -20,6 +21,7 @@ export default function App() {
     isDone,
     feedback,
     error,
+    startedAt,
     startInterview,
     sendMessage,
     retryLast,
@@ -37,6 +39,9 @@ export default function App() {
           candidate={isInterviewing ? selectedCandidate : null}
           isDark={isDark}
           toggleTheme={toggleTheme}
+          // Labelled in the UI so mock replies are never mistaken for real
+          // interview output during review.
+          isDemo={getApiMode() !== 'live'}
         />
       }
     >
@@ -47,6 +52,7 @@ export default function App() {
           isDone={isDone}
           feedback={feedback}
           error={error}
+          startedAt={startedAt}
           onSend={sendMessage}
           onRetry={retryLast}
           onReset={resetInterview}
