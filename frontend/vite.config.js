@@ -9,7 +9,31 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/api': 'http://localhost:8000',
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        // Without this, a backend that isn't running surfaces as a bare 500
+        // and the UI can only say "something went wrong". Answer with 502 +
+        // a JSON detail so the app can name the actual problem.
+        configure(proxy) {
+          proxy.on('error', (error, _req, res) => {
+            console.warn(
+              `\n[probeai] API proxy failed (${error.code ?? error.message}).` +
+                '\n[probeai] Start the backend:  uvicorn main:app --reload --app-dir backend\n',
+            )
+            if (res && !res.headersSent && typeof res.writeHead === 'function') {
+              res.writeHead(502, { 'Content-Type': 'application/json' })
+              res.end(
+                JSON.stringify({
+                  detail:
+                    'Backend not reachable on http://localhost:8000. Start it with: ' +
+                    'uvicorn main:app --reload --app-dir backend',
+                }),
+              )
+            }
+          })
+        },
+      },
     },
   },
   build: {

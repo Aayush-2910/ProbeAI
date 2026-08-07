@@ -27,7 +27,12 @@ function describeError(error) {
     case 'llm-unavailable':
       return { kind: error.kind, message: 'The interviewer is unavailable right now. Give it a moment and retry.' }
     case 'network':
-      return { kind: error.kind, message: 'Could not reach the server. Check that the backend is running.' }
+      // The API layer already produced a specific message here — either the
+      // proxy's "backend not reachable" detail or the fetch-failure text.
+      return {
+        kind: error.kind,
+        message: error.message || 'Could not reach the server. Check that the backend is running.',
+      }
     default:
       return { kind: error?.kind ?? 'unknown', message: 'Something went wrong. Please try again.' }
   }

@@ -13,6 +13,7 @@ import { fetchCandidates } from '../utils/api'
 export function useCandidates() {
   const [candidates, setCandidates] = useState([])
   const [status, setStatus] = useState('loading') // 'loading' | 'error' | 'ready'
+  const [errorMessage, setErrorMessage] = useState('')
   const [attempt, setAttempt] = useState(0)
 
   useEffect(() => {
@@ -27,8 +28,12 @@ export function useCandidates() {
         setCandidates(Array.isArray(data) ? data : [])
         setStatus('ready')
       })
-      .catch(() => {
-        if (active) setStatus('error')
+      .catch((error) => {
+        if (!active) return
+        // Name the actual problem — an unreachable backend is the common case
+        // in development, and "could not load" alone sends people hunting.
+        setErrorMessage(error?.message || 'Could not load candidates.')
+        setStatus('error')
       })
 
     return () => {
@@ -38,5 +43,5 @@ export function useCandidates() {
 
   const retry = useCallback(() => setAttempt((n) => n + 1), [])
 
-  return { candidates, status, retry }
+  return { candidates, status, errorMessage, retry }
 }

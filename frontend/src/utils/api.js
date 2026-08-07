@@ -25,6 +25,10 @@ function classify(status) {
   if (status === 409) return 'already-done'
   if (status === 503) return 'llm-unavailable'
   if (status === 400 || status === 422) return 'bad-request'
+  // 500/502/504 in dev almost always means the API is down and the Vite proxy
+  // is answering on its behalf — that is a reachability problem, not a bug in
+  // the request. Treat it as network so the UI says something actionable.
+  if (status === 500 || status === 502 || status === 504) return 'network'
   return 'unknown'
 }
 
@@ -54,7 +58,11 @@ async function request(path, options = {}) {
     if (error.name === 'AbortError') {
       throw new ApiError('The request timed out.', 0, 'network')
     }
-    throw new ApiError('Could not reach the server.', 0, 'network')
+    throw new ApiError(
+      'Could not reach the server. Check that the backend is running on port 8000.',
+      0,
+      'network',
+    )
   } finally {
     clearTimeout(timer)
   }

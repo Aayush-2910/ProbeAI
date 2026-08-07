@@ -28,7 +28,7 @@ function Spinner() {
 }
 
 export default function CandidateSelector({ onStart, isStarting }) {
-  const { candidates, status, retry } = useCandidates()
+  const { candidates, status, errorMessage, retry } = useCandidates()
   const [selectedId, setSelectedId] = useState('')
 
   const selected = candidates.find((c) => c.member?.id === selectedId) ?? null
@@ -37,7 +37,10 @@ export default function CandidateSelector({ onStart, isStarting }) {
   if (status === 'error') {
     return (
       <div className="flex flex-col items-center gap-3 rounded-xl border border-border bg-surface px-6 py-5">
-        <p className="text-[15px] text-text-muted">Could not load candidates.</p>
+        <p className="text-[15px] font-medium text-text">Could not load candidates.</p>
+        <p className="text-[13px] leading-relaxed text-text-muted">
+          {errorMessage || 'The server did not respond.'}
+        </p>
         <button
           type="button"
           onClick={retry}
