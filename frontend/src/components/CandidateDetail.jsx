@@ -83,17 +83,22 @@ export default function CandidateDetail({ candidate, isStarting, onStart }) {
   const education = candidate.member?.education
 
   return (
-    <div className="flex flex-1 flex-col p-5 sm:p-6 md:min-h-[540px] md:p-8">
+    <div className="flex flex-1 flex-col p-5 sm:p-6 md:min-h-[540px] md:p-8 xl:min-h-[600px] xl:p-10">
+      {/* Capped so the wide flex-1 panel becomes breathing room around a
+          well-proportioned content column, not three stat chips stretched
+          to 400px each with a lonely number in the middle of each one. */}
+      <div className="flex w-full max-w-[640px] flex-col xl:max-w-[720px]">
       <div className="flex items-center gap-4">
         <span
           aria-hidden="true"
           className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border
-                     border-accent-muted bg-elevated text-[17px] font-bold text-accent-strong"
+                     border-accent-muted bg-elevated text-[17px] font-bold text-accent-strong
+                     xl:h-20 xl:w-20 xl:text-[20px]"
         >
           {initials(name)}
         </span>
         <div className="min-w-0">
-          <h3 className="truncate text-[22px] font-bold leading-tight text-text">{name}</h3>
+          <h3 className="truncate text-[22px] font-bold leading-tight text-text xl:text-[26px]">{name}</h3>
           <p className="mt-0.5 truncate text-[14.5px] font-medium leading-tight text-text-secondary">
             {role} · {years}
           </p>
@@ -175,6 +180,7 @@ export default function CandidateDetail({ candidate, isStarting, onStart }) {
           )}
         </span>
       </button>
+      </div>
     </div>
   )
 }

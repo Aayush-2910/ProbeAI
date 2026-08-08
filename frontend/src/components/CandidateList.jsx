@@ -18,8 +18,8 @@ function SkeletonRow() {
 
 export default function CandidateList({ candidates, status, selectedId, onSelect }) {
   return (
-    <div className="flex w-full flex-col md:w-[340px] md:shrink-0">
-      <div className="flex items-center justify-between px-5 pb-2.5 pt-5">
+    <div className="flex w-full flex-col md:w-[360px] md:shrink-0 xl:w-[420px]">
+      <div className="flex items-center justify-between px-5 pb-2.5 pt-5 xl:px-6 xl:pt-6">
         <span className="text-[12.5px] font-bold uppercase tracking-[0.1em] text-text-secondary">
           Candidates
         </span>
@@ -33,7 +33,7 @@ export default function CandidateList({ candidates, status, selectedId, onSelect
       <div
         role="listbox"
         aria-label="Candidates"
-        className="chat-scrollbar max-h-[320px] overflow-y-auto px-2.5 pb-3 md:max-h-[540px]"
+        className="chat-scrollbar max-h-[320px] overflow-y-auto px-2.5 pb-3 md:max-h-[540px] xl:max-h-[600px] xl:px-3"
       >
         {status === 'loading'
           ? Array.from({ length: 6 }, (_, i) => <SkeletonRow key={i} />)

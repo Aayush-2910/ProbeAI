@@ -56,11 +56,16 @@ export default {
         danger: 'var(--danger)',
         tintDanger: 'var(--tint-danger)',
         tintSuccess: 'var(--tint-success)',
+        glassCard: 'var(--glass-card)',
         track: 'var(--track)',
       },
       maxWidth: {
         chat: '820px',
-        shell: '1100px',
+        // Went 1100 -> 1360 -> 1520 in small steps and it kept reading as
+        // narrow on a real desktop monitor. 1760px actually uses a
+        // 1920px screen (only ~80px gutter per side) instead of nudging
+        // toward it.
+        shell: '1760px',
       },
     },
   },

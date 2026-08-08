@@ -64,7 +64,7 @@ function areaPath(points, height, pad) {
 
 function CardShell({ className = '', children }) {
   return (
-    <div className={`glow-hover relative overflow-hidden rounded-2xl border border-border bg-surface px-4 py-5 sm:px-6 sm:py-6 ${className}`}>
+    <div className={`glow-hover relative overflow-hidden rounded-2xl border border-border bg-surface px-4 py-5 sm:px-6 sm:py-6 xl:px-7 xl:py-7 ${className}`}>
       <span className="absolute inset-x-0 top-0 h-px accent-line" aria-hidden="true" />
       {/* Faint dot field, matching the page background, so the card doesn't
           read as a flat rectangle behind the chart. */}
@@ -120,20 +120,20 @@ function AccuracyTrendCard() {
     <CardShell className="lg:col-span-2">
       <div ref={ref} className="flex items-start justify-between gap-4">
         <div>
-          <h3 className="text-[12px] font-bold uppercase tracking-[0.08em] text-text-secondary">
+          <h3 className="text-[12px] font-bold uppercase tracking-[0.08em] text-text-secondary xl:text-[13px]">
             Overall Accuracy
           </h3>
           <div className="mt-2 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
-            <span className="font-mono text-[28px] font-bold leading-none tabular-nums text-text sm:text-[34px]">
+            <span className="font-mono text-[28px] font-bold leading-none tabular-nums text-text sm:text-[34px] xl:text-[40px]">
               {current.toFixed(0)}%
             </span>
             <Delta value={delta} suffix="%" />
           </div>
-          <p className="mt-1 text-[12.5px] font-normal text-text-muted">Across the last 10 evaluation rounds</p>
+          <p className="mt-1 text-[12.5px] font-normal text-text-muted xl:text-[13px]">Across the last 10 evaluation rounds</p>
         </div>
       </div>
 
-      <div className="mt-5 h-40 w-full">
+      <div className="mt-5 h-40 w-full xl:h-48">
         <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" className="h-full w-full overflow-visible">
           <defs>
             <linearGradient id="accuracy-area" x1="0" y1="0" x2="0" y2="1">
@@ -201,16 +201,16 @@ function BreakdownCard() {
   return (
     <CardShell>
       <div ref={ref}>
-        <h3 className="text-[12px] font-bold uppercase tracking-[0.08em] text-text-secondary">
+        <h3 className="text-[12px] font-bold uppercase tracking-[0.08em] text-text-secondary xl:text-[13px]">
           Evaluation Breakdown
         </h3>
-        <p className="mt-1 text-[12.5px] font-normal text-text-muted">By assessment dimension</p>
+        <p className="mt-1 text-[12.5px] font-normal text-text-muted xl:text-[13px]">By assessment dimension</p>
 
         {/* items-stretch (the flex default) so each column takes the row's
             full h-40 — the bar track below then uses flex-1 for its height,
             since a plain h-full on a child of an auto-height column resolves
             to nothing. */}
-        <div className="mt-6 flex h-40 justify-between gap-4">
+        <div className="mt-6 flex h-40 justify-between gap-4 xl:h-48 xl:gap-5">
           {BREAKDOWN.map((item, index) => (
             <div key={item.label} className="flex flex-1 flex-col items-center">
               <span className="font-mono text-[13px] font-semibold tabular-nums text-text">
@@ -259,11 +259,11 @@ function VolumeTrendCard() {
     <CardShell className="lg:col-span-3">
       <div ref={ref} className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h3 className="text-[12px] font-bold uppercase tracking-[0.08em] text-text-secondary">
+          <h3 className="text-[12px] font-bold uppercase tracking-[0.08em] text-text-secondary xl:text-[13px]">
             Interviews Completed
           </h3>
           <div className="mt-2 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
-            <span className="font-mono text-[28px] font-bold leading-none tabular-nums text-text sm:text-[34px]">
+            <span className="font-mono text-[28px] font-bold leading-none tabular-nums text-text sm:text-[34px] xl:text-[40px]">
               {Math.round(displayed).toLocaleString()}+
             </span>
             <Delta value={weekly} suffix=" this week" />
@@ -271,7 +271,7 @@ function VolumeTrendCard() {
         </div>
       </div>
 
-      <div className="mt-5 h-28 w-full">
+      <div className="mt-5 h-28 w-full xl:h-32">
         <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" className="h-full w-full overflow-visible">
           <defs>
             <linearGradient id="volume-area" x1="0" y1="0" x2="0" y2="1">
@@ -328,15 +328,15 @@ export default function PerformanceStats() {
   return (
     <section className="w-full">
       <div className="text-center">
-        <h2 className="text-[20px] font-bold uppercase tracking-[0.08em] text-text sm:text-[22px]">
+        <h2 className="text-[20px] font-bold uppercase tracking-[0.08em] text-text sm:text-[22px] xl:text-[26px]">
           AI Performance
         </h2>
-        <p className="mx-auto mt-2.5 max-w-md text-[15px] font-normal text-text-secondary">
+        <p className="mx-auto mt-2.5 max-w-md text-[15px] font-normal text-text-secondary xl:text-[16px]">
           Benchmarked internally across the cohort dataset.
         </p>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-3">
+      <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-3 xl:gap-6">
         <AccuracyTrendCard />
         <BreakdownCard />
         <VolumeTrendCard />

@@ -110,14 +110,14 @@ function StepCard({ step, index }) {
       style={{ transitionDelay: inView ? `${index * 90}ms` : '0ms' }}
       className={`glow-hover lift group relative flex flex-1 flex-col items-center rounded-2xl
                  border border-border bg-surface px-5 py-8 text-center transition-all
-                 duration-500 ease-out hover:bg-hover
+                 duration-500 ease-out hover:bg-hover xl:px-6 xl:py-10
                  ${inView ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}
     >
       <div className="relative">
         <span
           className="flex h-16 w-16 items-center justify-center rounded-full border
                      border-accent-muted bg-elevated text-accent-strong transition-transform
-                     duration-300 group-hover:scale-110"
+                     duration-300 group-hover:scale-110 xl:h-[72px] xl:w-[72px]"
           aria-hidden="true"
         >
           <Icon />
@@ -131,8 +131,9 @@ function StepCard({ step, index }) {
         </span>
       </div>
 
-      <h3 className="mt-5 text-[16.5px] font-bold text-text">{step.title}</h3>
-      <p className="mt-2 max-w-[210px] text-[14px] font-normal leading-relaxed text-text-secondary">
+      <h3 className="mt-5 text-[16.5px] font-bold text-text xl:mt-6 xl:text-[18px]">{step.title}</h3>
+      <p className="mt-2 max-w-[210px] text-[14px] font-normal leading-relaxed text-text-secondary
+                    xl:max-w-[230px] xl:text-[14.5px]">
         {step.desc}
       </p>
     </div>
@@ -143,10 +144,10 @@ export default function HowItWorks() {
   return (
     <section className="w-full">
       <div className="text-center">
-        <h2 className="text-[20px] font-bold uppercase tracking-[0.08em] text-text sm:text-[22px]">
+        <h2 className="text-[20px] font-bold uppercase tracking-[0.08em] text-text sm:text-[22px] xl:text-[26px]">
           How ProbeAI Works
         </h2>
-        <p className="mx-auto mt-2.5 max-w-md text-[15px] font-normal text-text-secondary">
+        <p className="mx-auto mt-2.5 max-w-md text-[15px] font-normal text-text-secondary xl:text-[16px]">
           From candidate to assessment in five steps.
         </p>
       </div>
