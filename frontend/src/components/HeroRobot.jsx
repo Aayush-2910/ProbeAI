@@ -152,7 +152,7 @@ export default function HeroRobot() {
 
   return (
     <div className="relative flex w-full max-w-[360px] shrink-0 items-center justify-center
-                    sm:max-w-[420px] lg:w-[460px] lg:max-w-none xl:w-[520px]">
+                    sm:max-w-[420px] lg:ml-8 lg:w-[460px] lg:max-w-none xl:ml-14 xl:w-[520px]">
       {/* Ambient glow behind the robot, matching the accent used everywhere else. */}
       <div
         className="absolute inset-[8%] -z-10 rounded-full bg-accent opacity-[0.14] blur-3xl"
