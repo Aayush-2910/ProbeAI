@@ -78,7 +78,24 @@ def _explain(response: httpx.Response) -> str:
         message = (response.text or "")[:200]
 
     if response.status_code == 401:
-        return f"ElevenLabs rejected the API key ({message})."
+        # Keys are scoped. A key that synthesises fine can still 401 on
+        # /voices if it lacks voices_read, which looks like a bad key but is a
+        # missing permission.
+        return (
+            f"ElevenLabs rejected the key for this operation ({message}). "
+            "If speech itself works, the key is valid but missing a permission "
+            "scope — enable it in the ElevenLabs dashboard under API Keys."
+        )
+    if response.status_code == 402:
+        return (
+            f"ElevenLabs refused this voice on your plan ({message}). "
+            "Voice Library voices need a paid plan. Set ELEVENLABS_VOICE_ID to "
+            "a voice that works on free: EXAVITQu4vr4xnSDxMaL (Sarah), "
+            "pNInz6obpgDQGcFmaJgB (Adam), ErXwobaYiN019PkySvjV (Antoni), "
+            "or JBFqnCBsd6RMkjVDRZzb (George)."
+        )
+    if response.status_code == 404:
+        return f"ElevenLabs does not recognise that voice id ({message})."
     if response.status_code == 422:
         return f"ElevenLabs rejected the request ({message})."
     if response.status_code == 429:

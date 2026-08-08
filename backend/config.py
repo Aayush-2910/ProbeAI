@@ -133,9 +133,13 @@ VOICE_ENABLED = _env_bool("VOICE_ENABLED", True)
 ELEVENLABS_API_KEY = _env("ELEVENLABS_API_KEY")
 ELEVENLABS_BASE_URL = _env("ELEVENLABS_BASE_URL", "https://api.elevenlabs.io/v1")
 
-# "Rachel" — a long-standing ElevenLabs stock voice, used so the feature works
-# before anyone picks one. Override with any voice id from your account.
-ELEVENLABS_VOICE_ID = _env("ELEVENLABS_VOICE_ID", "21m00Tcm4TlvDq8ikWAM")
+# "Sarah" — verified to synthesize on a free ElevenLabs plan.
+#
+# Voice choice is not cosmetic here: most well-known ids (Rachel, Josh, and
+# anything added from the Voice Library) return 402 "Free users cannot use
+# library voices via the API". Known-good on free: Sarah EXAVITQu4vr4xnSDxMaL,
+# Adam pNInz6obpgDQGcFmaJgB, Antoni ErXwobaYiN019PkySvjV, George JBFqnCBsd6RMkjVDRZzb.
+ELEVENLABS_VOICE_ID = _env("ELEVENLABS_VOICE_ID", "EXAVITQu4vr4xnSDxMaL")
 
 # Turbo keeps latency low, which matters when a person is waiting to hear the
 # next interview question.

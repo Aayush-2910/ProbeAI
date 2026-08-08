@@ -20,6 +20,7 @@ The system prompt is layered, each layer with a distinct job:
     9 closing          whether the interview may end yet
 """
 
+import re
 from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel
@@ -57,7 +58,12 @@ RULES = """NON-NEGOTIABLE RULES:
 3. When the evaluation says to move on, acknowledge their answer briefly and genuinely in one short sentence, then bridge to the next planned topic.
 4. If the candidate does not know something, acknowledge it without judgment, do not lecture, do not teach, and move to the next topic.
 5. Make natural transitions. Reference what they said earlier when connecting topics.
-6. NEVER reveal or hint at scoring, evaluation, the interview plan, priorities, attempt counts, or that you hold any data about their missions. You may say "you spent some time on prompt engineering"; you may never say "you took 4 attempts".
+6. NEVER reveal or hint at scoring, evaluation, the interview plan, priorities, attempt counts, or that you hold any data about their missions. This includes paraphrases. All of these are forbidden, because the candidate never told you any of it and hearing it back is unsettling:
+   - "you didn't get a chance to work on X"
+   - "you skipped X" / "you missed X" / "X wasn't covered for you"
+   - "you struggled with X" / "X took you a few tries"
+   - "since you haven't done X" / "you're less familiar with X"
+   If the plan says they skipped or failed something, ask about it as a plain question with no preamble about their history. Say "Let's talk about deployment — what's the difference between an image and a container?", never "You didn't get to deployment, so...". The only history you may reference is what they themselves said earlier in THIS conversation.
 7. Never list topics and ask the candidate to choose.
 8. Keep it short — two to four sentences of speech, then the question. No bullet points, no headers, no markdown.
 9. Match the difficulty level given below. Do not ask an intern about Kubernetes trade-offs; do not ask a principal architect what an embedding is.
@@ -148,7 +154,7 @@ def build_system_prompt(
     opening: bool = False,
 ) -> str:
     from agents.evaluator import render_for_prompt
-    from agents.planner import summarize_plan
+    from agents.planner import plan_window, summarize_plan
 
     profile = session.get("profile") or {}
     plan = session.get("interview_plan") or []
@@ -157,18 +163,23 @@ def build_system_prompt(
     )
     target = _current_target(session)
 
+    # Only the current target and the next few. Sending all 13 costs ~1,300
+    # tokens on every turn, and a 16-call interview on Groq's free tier is
+    # already most of a day's token allowance.
+    window = plan_window(plan, session.get("current_plan_index", 0), ahead=3)
+
     sections = [
         PERSONA,
         f"CANDIDATE\n{describe_profile(profile) if profile else 'No profile available.'}",
         f"DIFFICULTY CALIBRATION: {_difficulty_guidance(difficulty)}",
-        f"YOUR INTERVIEW PLAN (private — never reveal it)\n{summarize_plan(plan)}",
+        f"YOUR NEXT TOPICS (private — never reveal or describe this list)\n{summarize_plan(window)}",
         _progress_block(session),
     ]
 
     if target and target.get("retrieved_context"):
         sections.append(
             "CURRICULUM CONTEXT FOR THE CURRENT TOPIC (retrieved; ground your question in this)\n"
-            + "\n".join(target["retrieved_context"][:3])
+            + "\n".join(target["retrieved_context"][:2])
         )
     if target and target.get("followup"):
         sections.append(f"IF YOU NEED TO PROBE DEEPER HERE, TRY:\n{target['followup']}")
@@ -205,6 +216,43 @@ def _trim_history(history: List[Dict[str, str]]) -> List[Dict[str, str]]:
         "content": f"[{dropped} earlier messages omitted for brevity.]",
     }
     return head + [marker] + tail
+
+
+# Phrasings that reveal the candidate's mission record. Prompt rules alone did
+# not hold: a live model reliably paraphrased "skipped this day" into "you
+# didn't get a chance to work on X". The plan no longer carries that history at
+# all, and this is the second line of defence.
+_LEAK_RE = re.compile(
+    r"didn'?t (get|have) (a )?chance to"
+    r"|you (haven'?t|did not|didn'?t) (work on|cover|complete|do|get to)"
+    r"|(wasn'?t|weren'?t) covered (for|by) you"
+    r"|you (struggled|had trouble) with"
+    r"|took you (a few|several|\d+) (tries|attempts|goes)"
+    r"|since you haven'?t"
+    r"|you'?re less familiar with"
+    r"|\bskipped\b|\battempts?\b|\bin your cohort\b",
+    re.IGNORECASE,
+)
+
+_SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+")
+
+
+def detect_leak(text: str) -> Optional[str]:
+    """Return the offending phrase, or None."""
+    match = _LEAK_RE.search(text or "")
+    return match.group(0) if match else None
+
+
+def _strip_leaking_sentences(reply: str) -> Optional[str]:
+    """Drop sentences that leak, keeping the rest.
+
+    Only used if a corrective retry also leaks. Returns None when the result
+    would no longer contain a question, since a message with no question would
+    stall the interview — better to ship a leaky question than no question.
+    """
+    kept = [s for s in _SENTENCE_SPLIT.split(reply.strip()) if s and not _LEAK_RE.search(s)]
+    cleaned = " ".join(kept).strip()
+    return cleaned if "?" in cleaned else None
 
 
 def _coerce(raw: Dict[str, Any], fallback_day: int) -> InterviewerTurn:
@@ -255,6 +303,35 @@ def generate_turn(
         label="interviewer",
     )
     turn = _coerce(raw, fallback_day)
+
+    leak = detect_leak(turn.reply)
+    if leak:
+        logger.warning(
+            "interviewer leaked mission history; regenerating",
+            extra={"event": "interviewer.leak", "phrase": leak},
+        )
+        corrective = system_prompt + (
+            "\n\nCORRECTION: your previous attempt began with "
+            f'"{leak}". You must not tell the candidate anything about their '
+            "mission history — they never told you any of it. Ask the same "
+            "question with no preamble about what they have or have not done."
+        )
+        try:
+            retry = _coerce(
+                generate_json(corrective, history, INTERVIEWER_TEMPERATURE,
+                              response_schema=_TurnPayload, label="interviewer:retry"),
+                fallback_day,
+            )
+            if detect_leak(retry.reply):
+                salvaged = _strip_leaking_sentences(retry.reply)
+                if salvaged:
+                    retry.reply = salvaged
+            turn = retry
+        except LLMError:
+            # A failed retry must not cost the turn; salvage what we have.
+            salvaged = _strip_leaking_sentences(turn.reply)
+            if salvaged:
+                turn.reply = salvaged
 
     logger.info(
         "interviewer turn",

@@ -434,15 +434,51 @@ def create_plan(
 # --- Prompt rendering (shared by the other agents) --------------------------
 
 
+# What the interviewer is told about each target, derived from `assumes` rather
+# than from the candidate's history.
+#
+# The raw signal ("skipped this day entirely") is accurate but dangerous in a
+# prompt: a live model paraphrases it straight back to the candidate as "you
+# didn't get a chance to work on X", which reads as the interviewer holding a
+# file on them. Phrasing it as an instruction to the interviewer instead of a
+# fact about the candidate removes the thing there is to leak.
+_ASSUMES_GUIDANCE = {
+    "none": "No hands-on experience here. Keep it conceptual or hypothetical. Never ask what they built.",
+    "studied": "Attempted this but it did not come together. Ask where it broke down, without implying you know it failed.",
+    "built": "Has hands-on experience here. Safe to ask what they actually did.",
+}
+
+
 def summarize_plan(plan: List[Dict[str, Any]], limit: Optional[int] = None) -> str:
+    """Render plan targets for the interviewer's prompt.
+
+    `limit` matters for cost, not tidiness: the full 13-target plan is ~1,300
+    tokens on every single turn, and the interviewer only ever needs the target
+    it is on plus the next few.
+    """
     rows = []
     for item in plan[:limit] if limit else plan:
-        objectives = "; ".join(item.get("objectives_to_probe", []))
+        objectives = "; ".join(item.get("objectives_to_probe", [])[:2])
         rows.append(
             f"{item['order']}. Day {item['curriculum_day']} — {item['topic_title']} "
-            f"[{item['priority']}] ({item['module']})\n"
-            f"   signal: {item['candidate_signal']}\n"
+            f"({item['module']})\n"
+            f"   approach: {_ASSUMES_GUIDANCE.get(item.get('assumes', 'none'))}\n"
             f"   probe: {objectives}\n"
             f"   suggested: {item['suggested_question']}"
         )
     return "\n".join(rows)
+
+
+def plan_window(
+    plan: List[Dict[str, Any]], current_index: int, ahead: int = 3
+) -> List[Dict[str, Any]]:
+    """The current target plus the next few — all the interviewer needs."""
+    if not plan:
+        return []
+    start = max(0, min(current_index, len(plan) - 1))
+    window = plan[start : start + 1 + ahead]
+    # Always keep the synthesis target visible so the closing question is not a
+    # surprise the interviewer has never seen.
+    if plan[-1] not in window:
+        window = window + [plan[-1]]
+    return window
