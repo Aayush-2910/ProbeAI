@@ -19,7 +19,18 @@
 
 import * as mockApi from '../mocks/mockApi'
 
-const API_BASE = '/api'
+/**
+ * In dev this stays '/api' and Vite proxies it to localhost:8000, so no
+ * environment switching lives in the app code (FRONTEND-ARCHITECTURE.md §11).
+ *
+ * In production the frontend is on Vercel and the API is on Render — different
+ * origins — so VITE_API_URL points at the backend, e.g.
+ *     VITE_API_URL=https://probeai-api.onrender.com
+ * Set it in the Vercel project's environment variables. Leaving it unset keeps
+ * the relative path, which is what you want if you proxy instead via a
+ * vercel.json rewrite.
+ */
+const API_BASE = `${(import.meta.env?.VITE_API_URL ?? '').replace(/\/$/, '')}/api`
 
 export function getApiMode() {
   return globalThis.__PROBEAI_API_MODE__ ?? import.meta.env?.VITE_API_MODE ?? 'mock'

@@ -1,0 +1,25 @@
+# Keep the build context small and never ship secrets into an image layer.
+
+.env
+**/.env
+.git
+.gitignore
+.claude/
+
+# The frontend deploys to Vercel; it is not part of this image.
+frontend/
+
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+*.md
+!README.md
+ProbeAI_System_Design.docx
+
+.DS_Store
+.vscode/
+.idea/
