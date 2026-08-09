@@ -1,0 +1,60 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+#
+# Deploy: Render dashboard -> New -> Blueprint -> pick this repo.
+# Secrets are marked `sync: false`, so Render prompts for them instead of
+# reading them from this file. Never put a key here; this file is public.
+
+services:
+  - type: web
+    name: probeai-api
+    runtime: docker
+    plan: free
+    region: singapore          # closest region to the cohort; change if needed
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    autoDeploy: true
+
+    envVars:
+      # --- LLM (Groq primary) ---
+      - key: LLM_PROVIDER
+        value: groq
+      - key: GROQ_API_KEY
+        sync: false            # prompted on deploy, never stored in git
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      # Fallback provider: set LLM_PROVIDER=gemini and supply this to switch
+      # without a rebuild.
+      - key: GEMINI_API_KEY
+        sync: false
+
+      # --- Voice (ElevenLabs) ---
+      - key: VOICE_ENABLED
+        value: "true"
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: ELEVENLABS_VOICE_ID
+        sync: false
+
+      # --- CORS ---
+      # Must list the Vercel origin once the frontend is deployed, e.g.
+      #   https://probeai.vercel.app
+      # Leave as * only while testing; it is the difference between "anyone can
+      # call this API" and "only your frontend can".
+      - key: CORS_ORIGINS
+        sync: false
+
+      # --- Runtime ---
+      - key: LOG_LEVEL
+        value: INFO
+      - key: LOG_JSON
+        value: "true"
+      - key: RAG_ENABLED
+        value: "true"
+
+      # Free instances sleep after inactivity and lose all in-memory sessions.
+      # A 30-minute TTL is longer than any interview, so the practical limit is
+      # the sleep, not this value.
+      - key: SESSION_BACKEND
+        value: memory
+      - key: SESSION_TTL_MINUTES
+        value: "30"

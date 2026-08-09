@@ -1,28 +1,39 @@
-"""Pydantic schemas for the ProbeAI API contract."""
+"""Pydantic schemas.
 
-from typing import Any, Dict, List, Optional
+Two groups live here:
+  * the public API contract, fixed by technical-spec.md — do not rename fields;
+  * internal models passed between agents, free to change.
+
+Every candidate-facing model allows extra keys. The hackathon supplies the
+candidate object and may extend it; unknown fields should ride along, not 422.
+"""
+
+from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-
-# --- Candidate profile ------------------------------------------------------
+# --- Candidate profile (shape defined by the supplied candidates.json) -------
 
 
 class Member(BaseModel):
-    """Identity + calibration signals for the candidate."""
+    """Identity and the signals used to calibrate difficulty."""
 
     model_config = ConfigDict(extra="allow")
 
     id: str
     name: str
-    jobRole: str
+    jobRole: str = "unknown"
     yearsExperience: int = 0
     education: Optional[str] = None
     status: Optional[str] = None
 
 
 class Mission(BaseModel):
-    """One curriculum day the candidate attempted (or skipped)."""
+    """One curriculum day the candidate attempted or skipped.
+
+    A skipped mission carries only `day`, `title` and `skipped: true` — no
+    `passed`, no `attempts` — so both must stay optional.
+    """
 
     model_config = ConfigDict(extra="allow")
 
@@ -34,8 +45,6 @@ class Mission(BaseModel):
 
 
 class Signals(BaseModel):
-    """Aggregate engagement signals across the cohort."""
-
     model_config = ConfigDict(extra="allow")
 
     commitDays: Optional[int] = None
@@ -51,17 +60,17 @@ class Candidate(BaseModel):
     signals: Signals = Field(default_factory=Signals)
 
 
-# --- API contract -----------------------------------------------------------
+# --- Public API contract ----------------------------------------------------
 
 
 class InterviewRequest(BaseModel):
-    """A single request to POST /api/interview.
+    """A single POST /api/interview call.
 
-    `candidate` is present only on the first request of a session.
-    `message` is present on every subsequent request.
+    `candidate` appears only on the first request of a session; `message` on
+    every one after it.
     """
 
-    sessionId: str
+    sessionId: str = Field(min_length=1)
     candidate: Optional[Candidate] = None
     message: Optional[str] = None
 
@@ -79,27 +88,89 @@ class InterviewResponse(BaseModel):
     feedback: Optional[FeedbackModel] = None
 
 
-# --- Internal (not part of the public contract) -----------------------------
+# --- Internal: planner ------------------------------------------------------
+
+Priority = Literal[
+    "CRITICAL",     # skipped the day entirely
+    "HIGH",         # attempted and failed
+    "MEDIUM-HIGH",  # passed, but needed 4+ attempts
+    "MEDIUM",       # passed on attempt 2-3
+    "BLIND-SPOT",   # never appears in the missions list
+    "LOW",          # passed first try
+    "SYNTHESIS",    # the closing big-picture question
+]
+
+Difficulty = Literal["foundational", "implementation", "architecture"]
 
 
-class TurnMeta(BaseModel):
-    """Structured metadata the interviewer LLM returns alongside its reply.
+class PlanTarget(BaseModel):
+    """One planned question: what to ask about, how hard, and why."""
 
-    Used purely for progress tracking; never shown to the candidate.
+    order: int
+    curriculum_day: int
+    module: str = ""
+    topic_title: str
+    priority: Priority
+    difficulty_level: Difficulty
+    objectives_to_probe: List[str] = Field(default_factory=list)
+    tools: List[str] = Field(default_factory=list)
+    candidate_signal: str = ""
+    suggested_question: str = ""
+    role: str = "probe"  # "opening" | "probe" | "synthesis"
+
+    # Retrieved from the question bank. `assumes` is derived from the mission
+    # priority, which is what stops a skipped day producing "walk me through
+    # how you built it".
+    question_id: Optional[str] = None
+    assumes: str = "none"
+    followup: str = ""
+    looks_for: str = ""
+
+    # Filled by the RAG layer: curriculum text retrieved for this topic.
+    retrieved_context: List[str] = Field(default_factory=list)
+
+
+# --- Internal: evaluator ----------------------------------------------------
+
+AnswerQuality = Literal["strong", "adequate", "weak", "no_answer"]
+
+
+class Evaluation(BaseModel):
+    """The Evaluator Agent's read on one candidate answer.
+
+    This agent assesses only. It never produces the next question.
     """
+
+    model_config = ConfigDict(extra="ignore")
+
+    quality: AnswerQuality
+    key_points_mentioned: List[str] = Field(default_factory=list)
+    missing_concepts: List[str] = Field(default_factory=list)
+    follow_up_needed: bool = False
+    reasoning: str = ""
+
+    # Bookkeeping, set by the caller rather than the model.
+    curriculum_day: int = 0
+    question_number: int = 0
+
+
+# --- Internal: interviewer --------------------------------------------------
+
+
+class InterviewerTurn(BaseModel):
+    """Structured output from the Interviewer Agent."""
 
     model_config = ConfigDict(extra="ignore")
 
     reply: str
     curriculum_day: int = 0
     is_followup: bool = False
-    answer_quality: str = "unclear"
     is_closing: bool = False
 
 
 class TurnResult(BaseModel):
-    """What conversation_engine hands back to main.py each turn."""
+    """What the interview service hands back to the route handler."""
 
     reply: str
     should_end: bool = False
-    meta: Optional[Dict[str, Any]] = None
+    meta: Dict[str, Any] = Field(default_factory=dict)

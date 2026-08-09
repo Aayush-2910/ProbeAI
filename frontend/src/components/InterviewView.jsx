@@ -2,6 +2,9 @@
  * InterviewView — stats bar, transcript, input.
  */
 
+import { useEffect } from 'react'
+
+import { useVoice } from '../hooks/useVoice'
 import ChatInput from './ChatInput'
 import ChatWindow from './ChatWindow'
 import StatsBar from './StatsBar'
@@ -22,6 +25,26 @@ export default function InterviewView({
   // exact — no guessing about what the backend asked.
   const questionCount = messages.filter((m) => m.role === 'interviewer').length
   const answerCount = messages.filter((m) => m.role === 'candidate').length
+
+  const voice = useVoice()
+  // Destructured deliberately: the hook returns a fresh object every render, so
+  // depending on `voice` itself would re-run these effects on every keystroke.
+  // These four are stable useCallback/state references.
+  const { voiceMode, available: voiceAvailable, speakOnce, stopSpeaking } = voice
+
+  // Read each new interviewer message aloud while voice mode is on. Keyed by
+  // message id so a re-render never restarts a question mid-sentence.
+  const lastMessage = messages[messages.length - 1]
+  useEffect(() => {
+    if (!voiceMode || !voiceAvailable) return
+    if (!lastMessage || lastMessage.role !== 'interviewer') return
+    speakOnce(lastMessage.id ?? `msg-${messages.length}`, lastMessage.content)
+  }, [lastMessage, messages.length, voiceMode, voiceAvailable, speakOnce])
+
+  // Nothing should still be talking once the interview is over.
+  useEffect(() => {
+    if (isDone) stopSpeaking()
+  }, [isDone, stopSpeaking])
 
   return (
     <div className="view-enter flex min-h-0 flex-1 flex-col">
@@ -77,7 +100,12 @@ export default function InterviewView({
       {/* Once the interview ends the input is unmounted, not just disabled —
           the FeedbackCard carries "Start New Interview" from here. */}
       {!isDone && (
-        <ChatInput onSend={onSend} disabled={isLoading} autoFocusKey={messages.length} />
+        <ChatInput
+          onSend={onSend}
+          disabled={isLoading}
+          autoFocusKey={messages.length}
+          voice={voice}
+        />
       )}
     </div>
   )

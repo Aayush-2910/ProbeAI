@@ -1,6 +1,28 @@
-fastapi>=0.115.0
+# fastapi is floored at 0.140 deliberately. The mcp package requires
+# starlette >=1.0, and fastapi <0.140 passes `on_startup` to Router, which
+# starlette 1.x removed — installing mcp alongside an older fastapi breaks
+# FastAPI() at construction time, before a single route is registered.
+fastapi>=0.140.0
+starlette>=1.0.0
 uvicorn[standard]>=0.30.0
 pydantic>=2.7.0
-google-genai>=1.0.0
 python-dotenv>=1.0.0
 httpx>=0.27.0
+
+# LLM. Groq is the primary provider; google-genai stays so LLM_PROVIDER can be
+# flipped back to gemini without a redeploy.
+groq>=0.11.0
+google-genai>=1.0.0
+
+# Voice (ElevenLabs) is called over plain HTTP with httpx above — no SDK needed.
+
+# Multipart form parsing, required by FastAPI for the audio upload endpoint.
+python-multipart>=0.0.9
+
+# RAG. onnxruntime is pinned explicitly because chromadb's default embedding
+# function (all-MiniLM-L6-v2) needs it at runtime but does not require it as a
+# hard dependency — without it the store silently degrades to keyword search.
+# Deliberately NOT using sentence-transformers: same model, but it pulls in
+# PyTorch (~2.5GB) and will not fit a small container.
+chromadb>=1.0.0
+onnxruntime>=1.17.0

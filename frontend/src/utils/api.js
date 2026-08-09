@@ -19,7 +19,18 @@
 
 import * as mockApi from '../mocks/mockApi'
 
-const API_BASE = '/api'
+/**
+ * In dev this stays '/api' and Vite proxies it to localhost:8000, so no
+ * environment switching lives in the app code (FRONTEND-ARCHITECTURE.md §11).
+ *
+ * In production the frontend is on Vercel and the API is on Render — different
+ * origins — so VITE_API_URL points at the backend, e.g.
+ *     VITE_API_URL=https://probeai-api.onrender.com
+ * Set it in the Vercel project's environment variables. Leaving it unset keeps
+ * the relative path, which is what you want if you proxy instead via a
+ * vercel.json rewrite.
+ */
+const API_BASE = `${(import.meta.env?.VITE_API_URL ?? '').replace(/\/$/, '')}/api`
 
 export function getApiMode() {
   return globalThis.__PROBEAI_API_MODE__ ?? import.meta.env?.VITE_API_MODE ?? 'mock'
@@ -112,4 +123,69 @@ export function startInterview(sessionId, candidate) {
 export function sendMessage(sessionId, message) {
   if (useMock()) return mockApi.sendMessage(sessionId, message)
   return request('/interview', postJson({ sessionId, message }))
+}
+
+/* ---------------------------------------------------------------------------
+ * VOICE
+ *
+ * Separate endpoints from /interview on purpose — the interview contract is
+ * fixed at { reply, done, feedback } and must not carry audio. The mic flow is
+ * composed client-side:
+ *     record -> transcribeAudio() -> sendMessage() -> speakText(reply)
+ *
+ * These have no mock implementation: speech needs a real ElevenLabs key, so in
+ * mock mode voice reports itself unavailable and the UI hides the microphone
+ * rather than offering a control that cannot work.
+ * ------------------------------------------------------------------------- */
+
+const VOICE_UNAVAILABLE = { voice_enabled: false, voice_configured: false }
+
+export async function fetchVoiceStatus() {
+  if (useMock()) return VOICE_UNAVAILABLE
+  try {
+    return await request('/voice/status')
+  } catch {
+    // Never let a voice probe break the interview UI; text still works.
+    return VOICE_UNAVAILABLE
+  }
+}
+
+/** Upload a recorded Blob and get the transcript back. */
+export async function transcribeAudio(blob, filename = 'answer.webm') {
+  if (useMock()) throw new ApiError('Voice needs the live backend.', 0, 'unknown')
+
+  const form = new FormData()
+  form.append('file', blob, filename)
+  form.append('language_code', 'eng')
+
+  // Note: no Content-Type header — the browser must set the multipart boundary.
+  return request('/voice/transcribe', { method: 'POST', body: form })
+}
+
+/**
+ * Synthesise speech. Returns an object URL the caller must revoke when done,
+ * otherwise every spoken question leaks a blob for the life of the page.
+ */
+export async function speakText(text, voiceId) {
+  if (useMock()) throw new ApiError('Voice needs the live backend.', 0, 'unknown')
+
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
+
+  try {
+    const res = await fetch(`${API_BASE}/voice/speak`, {
+      ...postJson({ text, voice_id: voiceId }),
+      signal: controller.signal,
+    })
+    if (!res.ok) {
+      throw new ApiError(await readDetail(res), res.status, classify(res.status))
+    }
+    return URL.createObjectURL(await res.blob())
+  } catch (error) {
+    if (error instanceof ApiError) throw error
+    if (error.name === 'AbortError') throw new ApiError('Speech timed out.', 0, 'network')
+    throw new ApiError('Could not reach the speech service.', 0, 'network')
+  } finally {
+    clearTimeout(timer)
+  }
 }
