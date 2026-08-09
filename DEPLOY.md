@@ -42,9 +42,10 @@ Set when prompted:
 Three fields are worth reading every time:
 
 - `llm_key_present: false` → the key did not reach the container; interviews will 503.
-- `backend: "keyword …"` → Chroma failed and retrieval silently degraded. The
-  Dockerfile bakes the embedding model in specifically to prevent this, so if it
-  appears, read the startup logs rather than ignoring it.
+- `backend: "keyword …"` → either `RAG_ENABLED=false` (expected on the free plan, see
+  below) or Chroma failed unexpectedly and retrieval silently degraded. Check
+  which one by reading the startup logs — a deliberate `false` says so plainly;
+  a real failure logs `rag.chroma_failed` with the exception.
 - `voice_configured: false` → the mic will not appear in the UI.
 
 ### Free tier, honestly
@@ -55,6 +56,19 @@ the next turn returns 404. For a live demo, wake the service first and keep it
 warm. Fixing this properly means moving sessions to a shared store
 (`SESSION_BACKEND`), not adding workers: with 2+ workers requests round-robin
 and a session created on one is invisible to the others.
+
+**512MB is not enough for a live ChromaDB build.** Building the vector index at
+startup — onnxruntime, the embedding model, and chromadb's own dependency
+weight (a full `kubernetes` client, `grpcio`, the OpenTelemetry SDK/exporter
+stack, none of which this app actually uses) — reliably exceeds 512MB before
+`uvicorn` ever binds a port. Render OOM-kills the process mid-boot, the logs
+show `rag.documents_built` immediately followed by `Out of memory (used over
+512Mi)`, and the service crash-loops. `render.yaml` therefore ships
+`RAG_ENABLED=false` by default on the free plan — the keyword-search fallback
+in `rag/vector_store.py` answers the same queries from a plain dict of token
+sets, at a fraction of the memory, and an interview still runs end to end with
+slightly weaker topic retrieval. Set it back to `true` only alongside
+`plan: standard` (2GB) or higher.
 
 ---
 

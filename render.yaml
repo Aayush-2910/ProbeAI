@@ -48,8 +48,15 @@ services:
         value: INFO
       - key: LOG_JSON
         value: "true"
+      # false on the free plan (512MB RAM) on purpose: building the ChromaDB
+      # index at startup — onnxruntime + the embedding model + chromadb's own
+      # dependency weight (kubernetes client, grpcio, OpenTelemetry) — reliably
+      # exceeds 512MB before the app ever binds a port, and Render OOM-kills it
+      # mid-boot. The keyword-search fallback (rag/vector_store.py) covers the
+      # same query interface at a fraction of the memory. Flip to "true" only
+      # alongside `plan: standard` (2GB) or higher.
       - key: RAG_ENABLED
-        value: "true"
+        value: "false"
 
       # Free instances sleep after inactivity and lose all in-memory sessions.
       # A 30-minute TTL is longer than any interview, so the practical limit is
