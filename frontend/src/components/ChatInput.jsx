@@ -198,7 +198,10 @@ export default function ChatInput({ onSend, disabled, autoFocusKey, voice }) {
                       }`}
         />
 
-        {voice?.available && (
+        {/* Hidden while voiceMode is on: the VoiceAssistantPanel owns the mic
+            control then, so there is exactly one "start listening" affordance
+            instead of two competing for the same recording state. */}
+        {voice?.available && !voice.voiceMode && (
           <button
             type="button"
             onClick={handleMic}

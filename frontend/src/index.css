@@ -267,6 +267,51 @@
   transform-origin: bottom;
 }
 
+/* Voice assistant orb (Siri-like) — idle breathing, listening pulse, speaking
+   pulse, and expanding sonar rings while the mic is live. Reuses .waveform-bar
+   above for the bar visualization inside the orb. */
+@keyframes orbBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+@keyframes orbListen {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.09); }
+}
+@keyframes orbSpeak {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.voice-orb-idle { animation: orbBreathe 3.6s ease-in-out infinite; }
+.voice-orb-listening { animation: orbListen 1s ease-in-out infinite; }
+.voice-orb-speaking { animation: orbSpeak 0.7s ease-in-out infinite; }
+
+@keyframes voiceSonar {
+  0% { transform: scale(0.82); opacity: 0.55; }
+  100% { transform: scale(1.85); opacity: 0; }
+}
+.voice-sonar {
+  animation: voiceSonar 2.4s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+
+/* Scanning ring around the orb: a conic-gradient arc, masked down to a thin
+   band so only the ring shows, rotating continuously. Faster while the
+   assistant is actually doing something (listening/thinking/speaking) than
+   at idle, so the spin itself reads as an activity cue. */
+@keyframes voiceRingSpin {
+  to { transform: rotate(360deg); }
+}
+.voice-ring-idle { animation: voiceRingSpin 16s linear infinite; }
+.voice-ring-active { animation: voiceRingSpin 3s linear infinite; }
+
+@keyframes voiceOrbEnter {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+.voice-orb-enter {
+  animation: voiceOrbEnter 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 @keyframes dotBounce {
   0%,
   80%,

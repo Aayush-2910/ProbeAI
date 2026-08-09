@@ -8,6 +8,7 @@ import { useVoice } from '../hooks/useVoice'
 import ChatInput from './ChatInput'
 import ChatWindow from './ChatWindow'
 import StatsBar from './StatsBar'
+import VoiceAssistantPanel from './VoiceAssistantPanel'
 
 export default function InterviewView({
   messages,
@@ -56,57 +57,89 @@ export default function InterviewView({
         isDone={isDone}
       />
 
-      <ChatWindow
-        messages={messages}
-        isLoading={isLoading}
-        isDone={isDone}
-        feedback={feedback}
-        onRetry={onRetry}
-        onReset={onReset}
-      />
+      <div className="flex min-h-0 flex-1 overflow-hidden">
+        <div className="flex min-h-0 flex-1 flex-col">
+          <ChatWindow
+            messages={messages}
+            isLoading={isLoading}
+            isDone={isDone}
+            feedback={feedback}
+            onRetry={onRetry}
+            onReset={onReset}
+          />
 
-      {error && (
-        <div className="shrink-0 px-4 pt-3 sm:px-6">
-          <div
-            role="alert"
-            className="mx-auto flex w-full max-w-chat items-center gap-3 rounded-xl border
-                       border-border bg-tintDanger py-1 pl-4 pr-1 text-[13px] text-text"
-          >
-            <span className="flex-1 py-1.5 font-normal leading-relaxed">{error.message}</span>
-            {error.kind === 'session-expired' && (
-              <button
-                type="button"
-                onClick={onReset}
-                className="shrink-0 font-semibold underline underline-offset-2 focus:outline-none
-                           focus-visible:ring-2 focus-visible:ring-accent-muted"
+          {error && (
+            <div className="shrink-0 px-4 pt-3 sm:px-6">
+              <div
+                role="alert"
+                className="mx-auto flex w-full max-w-chat items-center gap-3 rounded-xl border
+                           border-border bg-tintDanger py-1 pl-4 pr-1 text-[13px] text-text"
               >
-                Start new interview
-              </button>
-            )}
-            <button
-              type="button"
-              onClick={onDismissError}
-              aria-label="Dismiss error"
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded text-text-muted
-                         transition-colors hover:text-text focus:outline-none focus-visible:ring-2
-                         focus-visible:ring-accent-muted"
-            >
-              ✕
-            </button>
-          </div>
-        </div>
-      )}
+                <span className="flex-1 py-1.5 font-normal leading-relaxed">{error.message}</span>
+                {error.kind === 'session-expired' && (
+                  <button
+                    type="button"
+                    onClick={onReset}
+                    className="shrink-0 font-semibold underline underline-offset-2 focus:outline-none
+                               focus-visible:ring-2 focus-visible:ring-accent-muted"
+                  >
+                    Start new interview
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={onDismissError}
+                  aria-label="Dismiss error"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded text-text-muted
+                             transition-colors hover:text-text focus:outline-none focus-visible:ring-2
+                             focus-visible:ring-accent-muted"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+          )}
 
-      {/* Once the interview ends the input is unmounted, not just disabled —
-          the FeedbackCard carries "Start New Interview" from here. */}
-      {!isDone && (
-        <ChatInput
-          onSend={onSend}
-          disabled={isLoading}
-          autoFocusKey={messages.length}
-          voice={voice}
-        />
-      )}
+          {/* Once the interview ends the input is unmounted, not just disabled —
+              the FeedbackCard carries "Start New Interview" from here. */}
+          {!isDone && (
+            <ChatInput
+              onSend={onSend}
+              disabled={isLoading}
+              autoFocusKey={messages.length}
+              voice={voice}
+            />
+          )}
+        </div>
+
+        {/* Voice assistant: a true side panel from lg up (it takes flex width,
+            so the transcript column actually shrinks to make room — not an
+            overlay on top of it), a full-screen takeover below lg where
+            there's no room to show both at once. Position/inset/z toggle at
+            the lg breakpoint on the SAME element so there is only ever one
+            mounted VoiceAssistantPanel, not two fighting over `voice` state. */}
+        {!isDone && (
+          <div
+            aria-hidden={!voiceMode}
+            className={`fixed inset-0 z-40 overflow-hidden bg-bg transition-all duration-500 ease-out
+                        lg:static lg:inset-auto lg:z-auto lg:shrink-0 lg:border-l lg:border-border
+                        ${
+                          voiceMode
+                            ? 'translate-y-0 opacity-100 lg:w-[380px] xl:w-[420px]'
+                            : 'pointer-events-none translate-y-6 opacity-0 lg:w-0 lg:translate-y-0'
+                        }`}
+          >
+            {voiceMode && (
+              <VoiceAssistantPanel
+                voice={voice}
+                isThinking={isLoading}
+                onSend={onSend}
+                onClose={voice.toggleVoiceMode}
+              />
+            )}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
